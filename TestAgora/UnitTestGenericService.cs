@@ -1,3 +1,4 @@
+using Service.Interfaces;
 using Service.Models;
 using Service.Services;
 
@@ -9,7 +10,7 @@ namespace TestAgora
         public async void TestGetAllInscripciones()
         {
             // Arrange
-            var service = new GenericSerivice<Inscripcion>();
+            var service = new GenericService<Inscripcion>();
             // Act
             var result = await service.GetAllAsync(null);
             // Assert
@@ -28,7 +29,7 @@ namespace TestAgora
         public async void TestGetAlCapacitacion()
         {
             // Arrange
-            var service = new GenericSerivice<Capacitacion>();
+            var service = new GenericService<Capacitacion>();
             // Act
             var result = await service.GetAllAsync(null);
             // Assert
@@ -47,7 +48,7 @@ namespace TestAgora
         public async void TestGetAllUsuario()
         {
             // Arrange
-            var service = new GenericSerivice<Usuario>();
+            var service = new GenericService<Usuario>();
             // Act
             var result = await service.GetAllAsync(null);
             // Assert
@@ -66,7 +67,7 @@ namespace TestAgora
         public async void TestGetAllTipoInscripciones()
         {
             // Arrange
-            var service = new GenericSerivice<TipoInscripcion>();
+            var service = new GenericService<TipoInscripcion>();
             // Act
             var result = await service.GetAllAsync(null);
             // Assert
@@ -85,7 +86,7 @@ namespace TestAgora
         public async void TestGetAllTiposInscripcionesCapacitaciones()
         {
             // Arrange
-            var service = new GenericSerivice<TipoInscripcionCapacitacion>();
+            var service = new GenericService<TipoInscripcionCapacitacion>();
             // Act
             var result = await service.GetAllAsync(null);
             // Assert
@@ -105,7 +106,7 @@ namespace TestAgora
         public async void TestGetByIdTipoInscripcion()
         {
             // Arrange
-            var service = new GenericSerivice<TipoInscripcion>();
+            var service = new GenericService<TipoInscripcion>();
             int idToTest = 1; // Cambia este valor según el ID que quieras probar
             // Act
             var result = await service.GetByIdAsync(idToTest);
@@ -121,13 +122,50 @@ namespace TestAgora
         public async void TestDeleteInscripcion()
         {
             // Arrange
-            var service = new GenericSerivice<Inscripcion>();
+            var service = new GenericService<Inscripcion>();
             int idToDelete = 4; // Cambia este valor según el ID que quieras eliminar
             // Act
             var result = await service.DeleteAsync(idToDelete);
             // Assert
             Assert.True(result);
             Console.WriteLine($"TipoInscripcion con Id {idToDelete} eliminado exitosamente.");
+        }
+
+        [Fact]
+        public async void TestAddTipoInscripcion()
+        {
+            // Arrange
+            var service = new GenericService<TipoInscripcion>();
+            var newTipoInscripcion = new TipoInscripcion
+            {
+                Nombre = "Estudiante instituto"
+            };
+            // Act
+            var result = await service.AddAsync(newTipoInscripcion);
+            // Assert
+            Assert.NotNull(result);
+            Assert.IsType<TipoInscripcion>(result);
+            Assert.Equal(newTipoInscripcion.Nombre, result.Nombre);
+            Console.WriteLine($"TipoInscripcion agregado con Id: {result.Id}, Nombre: {result.Nombre}");
+
+
+        }
+        [Fact]
+        public async void TestDeletedsInscripciones()
+        {
+            // Arrange
+            var service = new GenericService<Capacitacion>();
+            // Act
+            var result = await service.GetAllDeletedAsync(null);
+            // Assert
+            Assert.NotNull(result);
+            Assert.IsType<List<Capacitacion>>(result);
+            Assert.True(result.Count == 1); // Asumiendo que siempre hay datos en la base de datos
+            foreach (var item in result)
+            {
+                //imprimimos las capacitaciones
+                Console.WriteLine($"Id: {item.Id}, Nombre: {item.Nombre}");
+            }
         }
     }
 }
