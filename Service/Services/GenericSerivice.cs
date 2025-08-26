@@ -3,6 +3,7 @@ using Service.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -27,9 +28,16 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.DeleteAsync($"{_endpoint}/{id}");
+            if (!response.IsSuccessStatusCode)
+            {
+               
+                throw new Exception($"Error al eliminar el registro: {response.StatusCode}");
+            }
+            return response.IsSuccessStatusCode;
+
         }
 
         public async Task<List<T>?> GetAllAsync(string? filtro)
@@ -48,9 +56,17 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<T?> GetByIdAsync(int id)
+        public async Task<T?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            {
+                var response = await _httpClient.GetAsync($"{_endpoint}/{id}");
+                var content = await response.Content.ReadAsStringAsync();
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new Exception($"Error al obtener los datos: {response.StatusCode} - {content}");
+                }
+                return JsonSerializer.Deserialize<T>(content, _options);
+            }
         }
 
         public Task<List<T>?> RestoreAsync(int id)
@@ -62,6 +78,13 @@ namespace Service.Services
         {
             throw new NotImplementedException();
         }
+
+
+       
+        
+
+
+
     }
 
 
