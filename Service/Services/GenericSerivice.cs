@@ -87,9 +87,19 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(T? entity)
+        public async Task<bool> UpdateAsync(T? entity)
         {
-            throw new NotImplementedException();
+            var idValue = entity.GetType().GetProperty("Id").GetValue(entity);
+            var response = await _httpClient.PutAsJsonAsync($"{_endpoint}/{idValue}", entity);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Hubon un problema al actualizar");
+            } else
+            {
+            return response.IsSuccessStatusCode;
+            }
+            
+
         }
 
 

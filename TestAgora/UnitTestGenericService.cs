@@ -167,5 +167,26 @@ namespace TestAgora
                 Console.WriteLine($"Id: {item.Id}, Nombre: {item.Nombre}");
             }
         }
+
+        [Fact]
+        public async void TestUpdateTipoInscripcion()
+        {
+            //Arrange
+            var service = new GenericService<TipoInscripcion>();
+            var tipoInscripcionAModificar = new TipoInscripcion()
+            {
+                Id = 2,
+                Nombre = "docente instituto"
+            };
+            //action
+            var result = await service.UpdateAsync(tipoInscripcionAModificar);
+            // Assert
+            Assert.NotNull(result);
+            Assert.True(result);
+
+
+
+            
+        }
     }
 }
