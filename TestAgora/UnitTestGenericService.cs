@@ -118,17 +118,18 @@ namespace TestAgora
             Console.WriteLine($"Id: {result.Id}, Nombre: {result.Nombre}");
         }
 
-        [Fact]
+        [Fact] // Forma en que xUnite identifique que lo que vas a poner es un test
+
         public async void TestDeleteInscripcion()
         {
             // Arrange
             var service = new GenericService<Inscripcion>();
-            int idToDelete = 4; // Cambia este valor según el ID que quieras eliminar
-            // Act
+            int idToDelete = 3; // Asumiendo que este ID existe en la base de datos
+                                // Act
             var result = await service.DeleteAsync(idToDelete);
             // Assert
             Assert.True(result);
-            Console.WriteLine($"TipoInscripcion con Id {idToDelete} eliminado exitosamente.");
+            Console.WriteLine($"TipoInscripcion con Id {idToDelete} eliminada exitosamente.");
         }
 
         [Fact]
@@ -151,7 +152,9 @@ namespace TestAgora
 
         }
         [Fact]
-        public async void TestDeletedsInscripciones()
+
+       
+        public async void TestDeleteCapacitacion()
         {
             // Arrange
             var service = new GenericService<Capacitacion>();
@@ -167,6 +170,7 @@ namespace TestAgora
                 Console.WriteLine($"Id: {item.Id}, Nombre: {item.Nombre}");
             }
         }
+
 
         [Fact]
         public async void TestUpdateTipoInscripcion()
@@ -187,6 +191,20 @@ namespace TestAgora
 
 
             
+        }
+
+        [Fact]
+       
+        public async void TestRestoreCapacitacion()
+        {
+            // Arrange
+            var service = new GenericService<Capacitacion>();
+            int idToRestore = 3; // Asumiendo que este ID existe en la base de datos
+                                 // Act
+            var result = await service.RestoreAsync(idToRestore);
+            // Assert
+            Assert.True(result);
+            Console.WriteLine($"Capacitacion con Id {idToRestore} restaurada exitosamente.");
         }
     }
 }

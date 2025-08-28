@@ -82,9 +82,18 @@ namespace Service.Services
             }
         }
 
-        public Task<List<T>?> RestoreAsync(int id)
+        public async Task<bool> RestoreAsync(int id)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.PutAsync($"{_endpoint}/restore/{id}",null);
+            if (!response.IsSuccessStatusCode)
+            {
+
+                throw new Exception("Error al eliminar el registro");
+            }
+            else
+            {
+                return response.IsSuccessStatusCode;
+            }
         }
 
         public async Task<bool> UpdateAsync(T? entity)
