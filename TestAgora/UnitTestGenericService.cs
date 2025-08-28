@@ -153,22 +153,17 @@ namespace TestAgora
         }
         [Fact]
 
-       
         public async void TestDeleteCapacitacion()
         {
+
             // Arrange
             var service = new GenericService<Capacitacion>();
-            // Act
-            var result = await service.GetAllDeletedAsync(null);
+            int idToDelete = 3; // Asumiendo que este ID existe en la base de datos
+                                // Act
+            var result = await service.DeleteAsync(idToDelete);
             // Assert
-            Assert.NotNull(result);
-            Assert.IsType<List<Capacitacion>>(result);
-            Assert.True(result.Count == 1); // Asumiendo que siempre hay datos en la base de datos
-            foreach (var item in result)
-            {
-                //imprimimos las capacitaciones
-                Console.WriteLine($"Id: {item.Id}, Nombre: {item.Nombre}");
-            }
+            Assert.True(result);
+            Console.WriteLine($"TipoInscripcion con Id {idToDelete} eliminada exitosamente.");
         }
 
 
