@@ -124,7 +124,7 @@ namespace TestAgora
         {
             // Arrange
             var service = new GenericService<Inscripcion>();
-            int idToDelete = 3; // Asumiendo que este ID existe en la base de datos
+            int idToDelete = 2; // Asumiendo que este ID existe en la base de datos
                                 // Act
             var result = await service.DeleteAsync(idToDelete);
             // Assert

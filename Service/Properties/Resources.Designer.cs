@@ -68,5 +68,14 @@ namespace Service.Properties {
                 return ResourceManager.GetString("UrlApi", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a https://localhost:7000/api/.
+        /// </summary>
+        public static string UrlApilocal {
+            get {
+                return ResourceManager.GetString("UrlApilocal", resourceCulture);
+            }
+        }
     }
 }
