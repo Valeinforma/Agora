@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(AgoraContext))]
-    [Migration("20250828210740_Correciones")]
-    partial class Correciones
+    [Migration("20250828230129_Actualizacionvale")]
+    partial class Actualizacionvale
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,7 +71,7 @@ namespace Backend.Migrations
                             Cupo = 30,
                             DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Detalle = "Aprende los conceptos básicos de programación.",
-                            FechaHora = new DateTime(2025, 9, 7, 18, 7, 37, 622, DateTimeKind.Local).AddTicks(884),
+                            FechaHora = new DateTime(2025, 9, 7, 20, 1, 26, 594, DateTimeKind.Local).AddTicks(4246),
                             InscripcionAbierta = true,
                             IsDeleted = false,
                             Nombre = "Introducción a la Programación",
@@ -83,7 +83,7 @@ namespace Backend.Migrations
                             Cupo = 25,
                             DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Detalle = "Crea aplicaciones web modernas con ASP.NET Core.",
-                            FechaHora = new DateTime(2025, 9, 17, 18, 7, 37, 622, DateTimeKind.Local).AddTicks(910),
+                            FechaHora = new DateTime(2025, 9, 17, 20, 1, 26, 594, DateTimeKind.Local).AddTicks(4332),
                             InscripcionAbierta = true,
                             IsDeleted = false,
                             Nombre = "Desarrollo Web con ASP.NET Core",
