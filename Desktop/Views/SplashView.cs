@@ -24,8 +24,8 @@ namespace Desktop.Views
             {
                 timer.Stop();
                 this.Hide();
-                var menuPrincipalView = new MenuPrincipalView();
-                menuPrincipalView.Show();
+                var login = new LoginView();
+                login.Show();
                 this.Close();
             }
         }
