@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Service.Properties {
+namespace Desktop.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Service.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Service.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Desktop.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,38 +61,12 @@ namespace Service.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a AIzaSyDsc99m5XiGRu27mnyznSYcsQj97qJpy6g.
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static string ApiKeyFirebase {
+        public static System.Drawing.Bitmap freepik_br_5b61cdb2_68b3_4ea5_848f_688cebd8b9b5 {
             get {
-                return ResourceManager.GetString("ApiKeyFirebase", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a agora-ca619.firebaseapp.com.
-        /// </summary>
-        public static string AuthDomainFirebase {
-            get {
-                return ResourceManager.GetString("AuthDomainFirebase", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a https://apiagoravale.azurewebsites.net/api/.
-        /// </summary>
-        public static string UrlApi {
-            get {
-                return ResourceManager.GetString("UrlApi", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a https://localhost:7000/api/.
-        /// </summary>
-        public static string UrlApilocal {
-            get {
-                return ResourceManager.GetString("UrlApilocal", resourceCulture);
+                object obj = ResourceManager.GetObject("freepik_br_5b61cdb2-68b3-4ea5-848f-688cebd8b9b5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
