@@ -1,6 +1,6 @@
 ﻿@page "/login"
-
-
+@inject FirebaseAuthService firebaseAuthService
+@inject SweetAlertService sweetAlert
 @if (!isAuthenticated)
 {
     <div class="card text-center">
@@ -12,7 +12,7 @@
             <div class="container">
                 <div class="row mb-3">
                     <div class="col-md-12 d-flex justify-content-center align-items-center">
-                        <label class="form-label me-2">Email</label>
+                        <label class="form-label me-2">Correo Electronico</label>
                         <InputText class="form-control w-50" @bind-Value="email" placeholder="usuario@gmail.com" />
                     </div>
                 </div>
@@ -55,13 +55,23 @@ else
 }
 @code 
 {
-    bool isAuthenticated = true;
+    bool isAuthenticated = false;
     private string email = string.Empty;
     private string password = string.Empty;
 
     private async Task Loguear()
     {
-        // Aquí iría la lógica de autenticación real
+        var user = await firebaseAuthService.SignInWithEmailPassword(email, password);
+        if (user != null)
+        {
+            isAuthenticated = true;
+            StateHasChanged();
+        }
+        else
+        {
+            await sweetAlert.FireAsync("Error", "No se pudo iniciar sesión. Verifique sus credenciales.", SweetAlertIcon.Warning);
+        }
+
     }
     
     private async Task Desloguear()
