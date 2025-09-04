@@ -1,6 +1,10 @@
 ﻿@page "/login"
 @inject FirebaseAuthService firebaseAuthService
 @inject SweetAlertService sweetAlert
+@inject NavigationManager navigation
+
+
+
 @if (!isAuthenticated)
 {
     <div class="card text-center">
@@ -59,6 +63,7 @@ else
     private string email = string.Empty;
     private string password = string.Empty;
 
+
     private async Task Loguear()
     {
         var user = await firebaseAuthService.SignInWithEmailPassword(email, password);
@@ -73,17 +78,18 @@ else
         }
 
     }
-    
+
     private async Task Desloguear()
     {
         isAuthenticated = false;
         email = string.Empty;
         password = string.Empty;
+        await firebaseAuthService.SignOut();
         StateHasChanged();
     }
 
     private async Task RegisterMe()
     {
-        // Aquí iría la lógica de registro real
+        navigation.NavigateTo("/signin");
     }
 }
