@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             pictureBox1 = new PictureBox();
             progressBar = new ProgressBar();
-            timer = new System.Windows.Forms.Timer(components);
+            TimerSplash = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -52,10 +52,11 @@
             progressBar.Size = new Size(557, 23);
             progressBar.TabIndex = 1;
             // 
-            // timer
+            // TimerSplash
             // 
-            timer.Enabled = true;
-            timer.Tick += timer_Tick;
+            TimerSplash.Enabled = true;
+            TimerSplash.Interval = 500;
+            TimerSplash.Tick += TimerSplash_Tick;
             // 
             // SplashView
             // 
@@ -76,6 +77,6 @@
 
         private PictureBox pictureBox1;
         private ProgressBar progressBar;
-        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Timer TimerSplash;
     }
 }

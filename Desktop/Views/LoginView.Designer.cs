@@ -116,6 +116,7 @@
             BtnCancelar.TabIndex = 30;
             BtnCancelar.Text = "Cancelar";
             BtnCancelar.UseVisualStyleBackColor = true;
+            BtnCancelar.Click += BtnCancelar_Click;
             // 
             // LoginView
             // 

@@ -63,8 +63,13 @@ namespace Desktop.Views
 
         private void CheckVerContraseña_CheckedChanged(object sender, EventArgs e)
         {
-            TxtPassword.PasswordChar = CheckVerContraseña.Checked? '\0':'*';
+            TxtPassword.PasswordChar = CheckVerContraseña.Checked ? '\0' : '*';
 
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
