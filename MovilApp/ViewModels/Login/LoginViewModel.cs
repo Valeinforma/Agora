@@ -76,7 +76,7 @@ namespace MovilApp.ViewModels.Login
                 var userCredential = await _clientAuth.SignInWithEmailAndPasswordAsync(email, password);
                 //if (userCredential.User.Info.IsEmailVerified == false)
                 //{
-                //    await Application.Current.MainPage.DisplayAlert("Inicio de sesión", "Debe verificar su correo electrónico", "Ok");
+                //    await Application.Current.MainPage.DisplayAlert("Inicios de sesión", "Debe verificar su correo electrónico", "Ok");
                 //    return;
                 //}
 
