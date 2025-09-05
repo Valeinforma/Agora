@@ -20,7 +20,7 @@
                     VerticalTextAlignment="Center"
                     Margin="5,10">Apellido y Nombre:</Label>
                 <Entry Grid.Row="0" Grid.Column="1" 
-                    Text="{Binding Nombre}"
+                    Text="{Binding Name}"
                     Margin="10,20,10,20"></Entry>
                 <Label Grid.Row="1" Grid.Column="0" 
                     HorizontalTextAlignment="End"
