@@ -124,7 +124,7 @@
     <value>agora-ca619.firebaseapp.com</value>
   </data>
   <data name="UrlApi" xml:space="preserve">
-    <value>https://apiagoravale.azurewebsites.net/api/</value>
+    <value>https://apiagoravalen.azurewebsites.net/api/</value>
   </data>
   <data name="UrlApilocal" xml:space="preserve">
     <value>https://localhost:7000/api/</value>
