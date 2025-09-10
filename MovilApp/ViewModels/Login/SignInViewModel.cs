@@ -39,7 +39,7 @@ namespace MovilApp.ViewModels.Login
                 {
                         new EmailProvider()
                 }
-            });
+            }); 
         }
 
         private async void Registrarse()
