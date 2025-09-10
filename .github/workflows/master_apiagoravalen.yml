@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - apiagoravale
+name: Build and deploy ASP.Net Core app to Azure Web App - apiagoravalen
 
 on:
   push:
@@ -24,10 +24,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build  Backend/Backend.csproj --configuration Release
+        run: dotnet build Backend/Backend.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish  Backend/Backend.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        run: dotnet publish Backend/Backend.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -51,15 +51,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_C9284421CA9341349BFD5F5EEA52D3A0 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E309C47082FE4745BCDA5E6E59F8C370 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_E0BE689297B943B18C4772E24DFE4552 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8ACCF4BF75544709B2B60623FC4A6056 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D98C9FF965E4476FA6B6A4716E6A944D }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2CF718FA3FD64513807FBB2AD8C780D5 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'apiagoravale'
+          app-name: 'apiagoravalen'
           slot-name: 'Production'
           package: .
 
