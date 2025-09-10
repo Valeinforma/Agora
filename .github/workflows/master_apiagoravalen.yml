@@ -51,16 +51,14 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8ACCF4BF75544709B2B60623FC4A6056 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D98C9FF965E4476FA6B6A4716E6A944D }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2CF718FA3FD64513807FBB2AD8C780D5 }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}          # 👈 Application (client) ID de tu App registrada en Azure
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}          # 👈 Tenant ID (ya lo tenés)
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} # 👈 Subscription ID de tu suscripción
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'apiagoravalen'
+          app-name: 'apiagoravalen'   # 👈 nombre exacto de tu App Service
           slot-name: 'Production'
           package: .
-
-          
