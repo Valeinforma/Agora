@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Desktop.Views;
 
 namespace Desktop.Views
 {
@@ -27,6 +19,13 @@ namespace Desktop.Views
             var usuariosView = new UsuariosView();
             usuariosView.MdiParent = this;
             usuariosView.Show();
+        }
+
+        private void SubMenuCapacitaciones_Click(object sender, EventArgs e)
+        {
+            var capacitacionesView = new CapacitacionesView();
+            capacitacionesView.MdiParent = this;
+            capacitacionesView.Show();
         }
     }
 }

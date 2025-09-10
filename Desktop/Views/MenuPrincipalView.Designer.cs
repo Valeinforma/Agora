@@ -30,10 +30,11 @@
         {
             menuStrip1 = new MenuStrip();
             SubMenuPrincipal = new ToolStripMenuItem();
+            SubMenuUsuarios = new ToolStripMenuItem();
             SubMenuSalir = new ToolStripMenuItem();
             SubMenuSalirDelSistema = new ToolStripMenuItem();
             toolStrip1 = new ToolStrip();
-            SubMenuUsuarios = new ToolStripMenuItem();
+            SubMenuCapacitaciones = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -48,10 +49,17 @@
             // 
             // SubMenuPrincipal
             // 
-            SubMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] { SubMenuUsuarios });
+            SubMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] { SubMenuUsuarios, SubMenuCapacitaciones });
             SubMenuPrincipal.Name = "SubMenuPrincipal";
             SubMenuPrincipal.Size = new Size(65, 20);
             SubMenuPrincipal.Text = "Principal";
+            // 
+            // SubMenuUsuarios
+            // 
+            SubMenuUsuarios.Name = "SubMenuUsuarios";
+            SubMenuUsuarios.Size = new Size(180, 22);
+            SubMenuUsuarios.Text = "Usuarios";
+            SubMenuUsuarios.Click += SubMenuUsuarios_Click;
             // 
             // SubMenuSalir
             // 
@@ -75,12 +83,12 @@
             toolStrip1.TabIndex = 2;
             toolStrip1.Text = "toolStrip1";
             // 
-            // SubMenuUsuarios
+            // SubMenuCapacitaciones
             // 
-            SubMenuUsuarios.Name = "SubMenuUsuarios";
-            SubMenuUsuarios.Size = new Size(180, 22);
-            SubMenuUsuarios.Text = "Usuarios";
-            SubMenuUsuarios.Click += SubMenuUsuarios_Click;
+            SubMenuCapacitaciones.Name = "SubMenuCapacitaciones";
+            SubMenuCapacitaciones.Size = new Size(180, 22);
+            SubMenuCapacitaciones.Text = "Capacitaciones";
+            SubMenuCapacitaciones.Click += SubMenuCapacitaciones_Click;
             // 
             // MenuPrincipalView
             // 
@@ -108,5 +116,6 @@
         private ToolStripMenuItem SubMenuSalirDelSistema;
         private ToolStrip toolStrip1;
         private ToolStripMenuItem SubMenuUsuarios;
+        private ToolStripMenuItem SubMenuCapacitaciones;
     }
 }
