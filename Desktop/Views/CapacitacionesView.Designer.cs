@@ -36,6 +36,8 @@
             BtnSalir = new FontAwesome.Sharp.IconButton();
             tabAgregarEliminar = new TabControl();
             tabPageLista = new TabPage();
+            BtnRestaurar = new FontAwesome.Sharp.IconButton();
+            checkVerEliminados = new CheckBox();
             BtnBuscar = new FontAwesome.Sharp.IconButton();
             TxtBuscar = new TextBox();
             LbBuscar = new Label();
@@ -93,7 +95,7 @@
             BtnAgregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnAgregar.IconSize = 40;
             BtnAgregar.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnAgregar.Location = new Point(1136, 108);
+            BtnAgregar.Location = new Point(1136, 81);
             BtnAgregar.Name = "BtnAgregar";
             BtnAgregar.Size = new Size(93, 43);
             BtnAgregar.TabIndex = 1;
@@ -110,9 +112,9 @@
             BtnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnEliminar.IconSize = 40;
             BtnEliminar.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnEliminar.Location = new Point(1136, 236);
+            BtnEliminar.Location = new Point(1136, 184);
             BtnEliminar.Name = "BtnEliminar";
-            BtnEliminar.Size = new Size(93, 54);
+            BtnEliminar.Size = new Size(99, 54);
             BtnEliminar.TabIndex = 2;
             BtnEliminar.Text = "Eliminar";
             BtnEliminar.TextAlign = ContentAlignment.MiddleRight;
@@ -127,9 +129,9 @@
             BtnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnModificar.IconSize = 40;
             BtnModificar.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnModificar.Location = new Point(1136, 169);
+            BtnModificar.Location = new Point(1136, 130);
             BtnModificar.Name = "BtnModificar";
-            BtnModificar.Size = new Size(93, 48);
+            BtnModificar.Size = new Size(97, 48);
             BtnModificar.TabIndex = 3;
             BtnModificar.Text = "Modificar";
             BtnModificar.TextAlign = ContentAlignment.MiddleRight;
@@ -165,6 +167,8 @@
             // 
             // tabPageLista
             // 
+            tabPageLista.Controls.Add(BtnRestaurar);
+            tabPageLista.Controls.Add(checkVerEliminados);
             tabPageLista.Controls.Add(BtnBuscar);
             tabPageLista.Controls.Add(TxtBuscar);
             tabPageLista.Controls.Add(LbBuscar);
@@ -181,6 +185,34 @@
             tabPageLista.TabIndex = 0;
             tabPageLista.Text = "Lista";
             tabPageLista.UseVisualStyleBackColor = true;
+            // 
+            // BtnRestaurar
+            // 
+            BtnRestaurar.Anchor = AnchorStyles.Bottom;
+            BtnRestaurar.IconChar = FontAwesome.Sharp.IconChar.Reply;
+            BtnRestaurar.IconColor = Color.Black;
+            BtnRestaurar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            BtnRestaurar.IconSize = 40;
+            BtnRestaurar.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnRestaurar.Location = new Point(1136, 244);
+            BtnRestaurar.Name = "BtnRestaurar";
+            BtnRestaurar.Size = new Size(99, 54);
+            BtnRestaurar.TabIndex = 12;
+            BtnRestaurar.Text = "Restaurar";
+            BtnRestaurar.TextAlign = ContentAlignment.MiddleRight;
+            BtnRestaurar.UseVisualStyleBackColor = true;
+            BtnRestaurar.Click += BtnRestaurar_Click;
+            // 
+            // checkVerEliminados
+            // 
+            checkVerEliminados.AutoSize = true;
+            checkVerEliminados.Location = new Point(752, 33);
+            checkVerEliminados.Name = "checkVerEliminados";
+            checkVerEliminados.Size = new Size(103, 19);
+            checkVerEliminados.TabIndex = 11;
+            checkVerEliminados.Text = "Ver eliminados";
+            checkVerEliminados.UseVisualStyleBackColor = true;
+            checkVerEliminados.CheckedChanged += checkVerEliminados_CheckedChanged;
             // 
             // BtnBuscar
             // 
@@ -203,7 +235,7 @@
             // 
             TxtBuscar.Location = new Point(57, 30);
             TxtBuscar.Name = "TxtBuscar";
-            TxtBuscar.Size = new Size(1048, 23);
+            TxtBuscar.Size = new Size(659, 23);
             TxtBuscar.TabIndex = 9;
             TxtBuscar.TextChanged += TxtBuscar_TextChanged;
             // 
@@ -379,9 +411,9 @@
             label1.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(204, 51);
+            label1.Size = new Size(301, 51);
             label1.TabIndex = 0;
-            label1.Text = "Películas";
+            label1.Text = "Capacitaciones";
             // 
             // LabelStatusMessage
             // 
@@ -401,7 +433,7 @@
             TimerStatusBar.Interval = 3000;
             TimerStatusBar.Tick += TimerStatusBar_Tick;
             // 
-            // PeliculasEFView
+            // CapacitacionesView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -409,8 +441,8 @@
             Controls.Add(LabelStatusMessage);
             Controls.Add(panel1);
             Controls.Add(tabAgregarEliminar);
-            Name = "PeliculasEFView";
-            Text = "PeliculasView";
+            Name = "CapacitacionesView";
+            Text = "CapacitacionesView";
             ((System.ComponentModel.ISupportInitialize)GridPeliculas).EndInit();
             tabAgregarEliminar.ResumeLayout(false);
             tabPageLista.ResumeLayout(false);
@@ -436,7 +468,6 @@
         private FontAwesome.Sharp.IconButton BtnSalir;
         private TabControl tabAgregarEliminar;
         private TabPage tabPageLista;
-        private PictureBox FilmPicture;
         private TabPage tabPageAgregar;
         private Panel panel1;
         private Label label1;
@@ -458,5 +489,8 @@
         private System.Windows.Forms.Timer TimerStatusBar;
         private Label label2;
         private ComboBox comboPaises;
+        private CheckBox checkVerEliminados;
+        private FontAwesome.Sharp.IconButton BtnRestaurar;
+        private PictureBox FilmPicture;
     }
 }

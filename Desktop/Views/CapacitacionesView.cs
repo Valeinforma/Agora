@@ -27,14 +27,21 @@ namespace Desktop.Views
 
         private async Task GetAllData()
         {
+            if (checkVerEliminados.Checked)
+            {
+                _capacitaciones = await _capacitacionService.GetAllDeletedAsync("");
+            }
+            else
+            {
+                _capacitaciones = await _capacitacionService.GetAllAsync();
 
-            _capacitaciones = await _capacitacionService.GetAllAsync();
+            }
+            
             GridPeliculas.DataSource = _capacitaciones;
             GridPeliculas.Columns["Id"].Visible = false;
             GridPeliculas.Columns["IsDeleted"].Visible = false; // Ocultamos la columna eliminar
 
-
-        }
+}
         private void GridPeliculas_SelectionChanged(object sender, EventArgs e)
         {
             if (GridPeliculas.RowCount > 0 && GridPeliculas.SelectedRows.Count > 0)
@@ -54,6 +61,7 @@ namespace Desktop.Views
 
                 if (respuesta == DialogResult.Yes)
                 {
+
 
                     if (await _capacitacionService.DeleteAsync(entitySelected.Id))
                     {
@@ -156,7 +164,7 @@ namespace Desktop.Views
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            //    GridPeliculas.DataSource = peliculas.Where(p => p.titulo.ToUpper().Contains(TxtBuscar.Text.ToUpper())).ToList();
+            GridPeliculas.DataSource = _capacitaciones.Where(p => p.Nombre.ToUpper().Contains(TxtBuscar.Text.ToUpper())).ToList();
 
         }
 
@@ -169,11 +177,47 @@ namespace Desktop.Views
 
         //}
 
-       private void TimerStatusBar_Tick(object sender, EventArgs e)
+        private void TimerStatusBar_Tick(object sender, EventArgs e)
         {
             //    LabelStatusMessage.Text = string.Empty;
             //    TimerStatusBar.Stop();
             //}
+        }
+
+        private async void checkVerEliminados_CheckedChanged(object sender, EventArgs e)
+        {
+            await GetAllData();
+        }
+
+        private async void BtnRestaurar_Click(object sender, EventArgs e)
+        {
+            if (!checkVerEliminados.Checked) return;
+
+            //checkeamos que haya peliculas seleccionadas
+            if (GridPeliculas.RowCount > 0 && GridPeliculas.SelectedRows.Count > 0)
+            {
+                Capacitacion entitySelected = (Capacitacion)GridPeliculas.SelectedRows[0].DataBoundItem;
+                var respuesta = MessageBox.Show($"¿Seguro que quieres recuperar la capacitacion ?{entitySelected.Nombre}", "Confirmar Restauracion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (respuesta == DialogResult.Yes)
+                {
+
+
+                    if (await _capacitacionService.RestoreAsync(entitySelected.Id))
+                    {
+                        LabelStatusMessage.Text = $"capacitacion {entitySelected.Nombre} eliminada correctamente";
+                        TimerStatusBar.Start();
+                        await GetAllData();
+                    }
+
+
+                    else
+                    {
+                        MessageBox.Show("No hay Capacitacion seleccionadas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+            }
         }
     }
 }
