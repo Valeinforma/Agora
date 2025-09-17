@@ -171,16 +171,15 @@ namespace Desktop.Views
                 }
         }
 
-        private void iconButton1_Click(object sender, EventArgs e)
+        private async Task iconButton1_Click(object sender, EventArgs e)
         {
-            GridPeliculas.DataSource = _capacitaciones.Where(p => p.Nombre.ToUpper().Contains(TxtBuscar.Text.ToUpper())).ToList();
-
+            GridPeliculas.DataSource = await _capacitacionService.GetAllAsync(TxtBuscar.Text);
         }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            //    if (String.IsNullOrWhiteSpace(TxtBuscar.Text))
-            //    {
+            
+            
             //        BtnBuscar.PerformClick();
         }
 
