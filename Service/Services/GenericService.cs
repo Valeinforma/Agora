@@ -60,7 +60,7 @@ namespace Service.Services
             return JsonSerializer.Deserialize<List<T>>(content, _options);
         }
 
-        public async Task<List<T>?> GetAllDeletedAsync(string? filtro)
+        public async Task<List<T>?> GetAllDeletedAsync(string? filtro="")
         {
             var response = await _httpClient.GetAsync($"{_endpoint}/Deleteds");
             var content = await response.Content.ReadAsStringAsync();

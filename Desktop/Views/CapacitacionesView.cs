@@ -23,13 +23,24 @@ namespace Desktop.Views
         {
             InitializeComponent();
             _ = GetAllData();
+            checkVerEliminados.CheckedChanged += DisplayHideControlsRestoreButton;
+        }
+
+        private void DisplayHideControlsRestoreButton(object? sender, EventArgs e)
+        {
+           BtnRestaurar.Visible = checkVerEliminados.Checked;
+            TxtBuscar.Enabled = !checkVerEliminados.Checked;
+            BtnModificar.Enabled = !checkVerEliminados.Checked;
+            BtnEliminar.Enabled = !checkVerEliminados.Checked;
+            BtnAgregar.Enabled = !checkVerEliminados.Checked;
+            BtnBuscar.Enabled = !checkVerEliminados.Checked;
         }
 
         private async Task GetAllData()
         {
             if (checkVerEliminados.Checked)
             {
-                _capacitaciones = await _capacitacionService.GetAllDeletedAsync("");
+                _capacitaciones = await _capacitacionService.GetAllDeletedAsync();
             }
             else
             {
@@ -89,77 +100,75 @@ namespace Desktop.Views
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            //    LimpiarControlAgregar();
-            //    tabAgregarEliminar.SelectTab("tabPageAgregar");
+              LimpiarControlAgregar();
+               tabAgregarEliminar.SelectedTab = tabPageAgregar;
         }
         private void LimpiarControlAgregar()
         {
-            titulo2.Text = string.Empty;
-            NumericDuracion.Value = 0;
-            txtPortada2.Text = string.Empty;
-            FilmPicture.ImageLocation = null;
+            //limpiamos todo
+            TxtNombre.Clear();
+            TxtDetalle.Clear();
+            dateTimeFechaHora.Value = DateTime.Now;
+            TxtExponente.Clear();
+            checkInscripcionAbierta.Checked = false;
+            NumericCupo.Value = 0;
+ 
         }
         private void iconButton3_Click(object sender, EventArgs e)
         {
-            tabAgregarEliminar.SelectTab("tabPageLista");
+            tabAgregarEliminar.SelectedTab = tabPageAgregar;
         }
 
         private async void iconButton2_Click(object sender, EventArgs e)
         {
-            //    Pelicula PeliculaAGuardar = new Pelicula
-            //    {
-            //        id = peliculaModificada?.id ?? null,
-            //        titulo = titulo2.Text,
-            //        duracion = (int)NumericDuracion.Value,
-            //        portada = txtPortada2.Text,
-            //        calificacion = (double)NumericCalificacion.Value,
-            //        // Asignamos el PaisId del combo seleccionado
-
-            //        PaisId = (int?)comboPaises.SelectedValue
-            //    };
-            //    bool response;
-            //    if (peliculaModificada != null)
-            //    {
-            //        response = await peliculaService.UpdateAsync(PeliculaAGuardar);
-            //    }
-            //    else
-            //    {
-            //        response = await peliculaService.AddAsync(
-            //           PeliculaAGuardar);
-            //    }
-            //    if (response)
-            //    {
-            //        peliculaModificada = null;
-            //        MessageBox.Show("Pelicula se guardo correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        obtenemosPeliculas();
-            //        tabAgregarEliminar.SelectTab("TabPageLista");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Error al modificar la pelicula", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
+            Capacitacion CapacitacionAGuardar = new Capacitacion
+            {
+                Id = _currentCapacitacion?.Id ?? 0,
+                Nombre = TxtNombre.Text,
+                Detalle = TxtDetalle.Text,
+                Ponente = TxtExponente.Text,
+                FechaHora = dateTimeFechaHora.Value,
+                Cupo = (int)NumericCupo.Value,
+                InscripcionAbierta = checkInscripcionAbierta.Checked
+            };
+             bool response = false;
+            if (_currentCapacitacion != null)
+            {
+                 response = await _capacitacionService.UpdateAsync(CapacitacionAGuardar);
+            }
+            else
+            {
+                var nuevacapacitacion = await _capacitacionService.AddAsync(
+                   CapacitacionAGuardar);
+                response = nuevacapacitacion != null;
+            }
+            if (response)
+            {
+                _currentCapacitacion = null;
+                MessageBox.Show($"Capacitacion {CapacitacionAGuardar.Nombre} guardo correctamente");
+                await GetAllData();
+                tabAgregarEliminar.SelectedTab=tabPageLista;
+            }
+            else
+            {
+                MessageBox.Show("Error al modificar la pelicula", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnModificar_Click(object sender, EventArgs e)
         {
-            //    if (GridPeliculas.RowCount > 0 && GridPeliculas.SelectedRows.Count > 0)
-            //    {
-            //        peliculaModificada = (Pelicula)GridPeliculas.SelectedRows[0].DataBoundItem;
-            //        titulo2.Text = peliculaModificada.titulo;
-            //        NumericDuracion.Value = peliculaModificada.duracion;
-            //        txtPortada2.Text = peliculaModificada.portada;
-            //        NumericCalificacion.Value = (decimal)peliculaModificada.calificacion;
-            //        tabAgregarEliminar.SelectTab("tabPageAgregar");
-            //        //asigna el pais seleccionado al combo
-            //        if (peliculaModificada.PaisId != null)
-            //        {
-            //            comboPaises.SelectedValue = peliculaModificada.PaisId;
-            //        }
-            //        else
-            //        {
-            //            comboPaises.SelectedIndex = -1; // Si no hay PaisId, deselecciona el combo
-            //        }
-            //    }
+                if (GridPeliculas.RowCount > 0 && GridPeliculas.SelectedRows.Count > 0)
+                {
+                    _currentCapacitacion = (Capacitacion)GridPeliculas.SelectedRows[0].DataBoundItem;
+                    TxtNombre.Text = _currentCapacitacion.Nombre;
+                    TxtDetalle.Text = _currentCapacitacion.Detalle;
+                    dateTimeFechaHora.Value = _currentCapacitacion.FechaHora;
+                    TxtExponente.Text = _currentCapacitacion.Ponente;
+                    NumericCupo.Value = _currentCapacitacion.Cupo;
+                    checkInscripcionAbierta.Checked = _currentCapacitacion.InscripcionAbierta;
+
+                    tabAgregarEliminar.SelectedTab = tabPageAgregar;
+                }
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
