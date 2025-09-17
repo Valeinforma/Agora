@@ -230,7 +230,7 @@
             BtnBuscar.Text = "Buscar";
             BtnBuscar.TextAlign = ContentAlignment.MiddleRight;
             BtnBuscar.UseVisualStyleBackColor = true;
-            BtnBuscar.Click += iconButton1_Click;
+           
             // 
             // TxtBuscar
             // 

@@ -133,6 +133,7 @@
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "LoginView";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginView";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
