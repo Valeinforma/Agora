@@ -1,7 +1,7 @@
 ﻿@page "/login"
-@inject FirebaseAuthService firebaseAuthService
-@inject SweetAlertService sweetAlert
-@inject NavigationManager navigation
+@inject FirebaseAuthService _firebaseAuthService
+@inject SweetAlertService _sweetAlert
+@inject NavigationManager _navigation
 
 
 
@@ -63,10 +63,22 @@ else
     private string email = string.Empty;
     private string password = string.Empty;
 
+    protected override async Task OnInitializedAsync()
+    {
+        isAuthenticated = await _firebaseAuthService.IsUserAuthenticated();
+	}
+
 
     private async Task Loguear()
     {
-        var user = await firebaseAuthService.SignInWithEmailPassword(email, password);
+        var user = await _firebaseAuthService.SignInWithEmailPassword(email, password);
+        if (user != null)
+
+        if (user.EmailVerified == false)
+        {
+            await _sweetAlert.FireAsync("Verificación de correo", "Por favor, verifica tu correo electrónico antes de iniciar sesión.", SweetAlertIcon.Warning);
+            return;
+        }
         if (user != null)
         {
             isAuthenticated = true;
@@ -74,7 +86,7 @@ else
         }
         else
         {
-            await sweetAlert.FireAsync("Error", "No se pudo iniciar sesión. Verifique sus credenciales.", SweetAlertIcon.Warning);
+            await _sweetAlert.FireAsync("Error", "No se pudo iniciar sesión. Verifique sus credenciales.", SweetAlertIcon.Warning);
         }
 
     }
@@ -84,12 +96,12 @@ else
         isAuthenticated = false;
         email = string.Empty;
         password = string.Empty;
-        await firebaseAuthService.SignOut();
+        await _firebaseAuthService.SignOut();
         StateHasChanged();
     }
 
     private async Task RegisterMe()
     {
-        navigation.NavigateTo("/signin");
+        _navigation.NavigateTo("/signin");
     }
 }

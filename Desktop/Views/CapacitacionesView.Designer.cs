@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            GridPeliculas = new DataGridView();
+            GridData = new DataGridView();
             BtnAgregar = new FontAwesome.Sharp.IconButton();
             BtnEliminar = new FontAwesome.Sharp.IconButton();
             BtnModificar = new FontAwesome.Sharp.IconButton();
             BtnSalir = new FontAwesome.Sharp.IconButton();
-            tabAgregarEliminar = new TabControl();
+            TabControl = new TabControl();
             tabPageLista = new TabPage();
             BtnRestaurar = new FontAwesome.Sharp.IconButton();
             checkVerEliminados = new CheckBox();
@@ -42,7 +42,7 @@
             TxtBuscar = new TextBox();
             LbBuscar = new Label();
             FilmPicture = new PictureBox();
-            tabPageAgregar = new TabPage();
+            tabPageAgregar_Editar = new TabPage();
             checkInscripcionAbierta = new CheckBox();
             label2 = new Label();
             dateTimeFechaHora = new DateTimePicker();
@@ -61,31 +61,31 @@
             LabelStatusMessage = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             TimerStatusBar = new System.Windows.Forms.Timer(components);
-            ((System.ComponentModel.ISupportInitialize)GridPeliculas).BeginInit();
-            tabAgregarEliminar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
+            TabControl.SuspendLayout();
             tabPageLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)FilmPicture).BeginInit();
-            tabPageAgregar.SuspendLayout();
+            tabPageAgregar_Editar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)NumericCupo).BeginInit();
             panel1.SuspendLayout();
             LabelStatusMessage.SuspendLayout();
             SuspendLayout();
             // 
-            // GridPeliculas
+            // GridData
             // 
-            GridPeliculas.AllowUserToAddRows = false;
-            GridPeliculas.AllowUserToDeleteRows = false;
-            GridPeliculas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            GridPeliculas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            GridPeliculas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            GridPeliculas.Location = new Point(6, 66);
-            GridPeliculas.MultiSelect = false;
-            GridPeliculas.Name = "GridPeliculas";
-            GridPeliculas.ReadOnly = true;
-            GridPeliculas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridPeliculas.Size = new Size(710, 251);
-            GridPeliculas.TabIndex = 0;
-            GridPeliculas.SelectionChanged += GridPeliculas_SelectionChanged;
+            GridData.AllowUserToAddRows = false;
+            GridData.AllowUserToDeleteRows = false;
+            GridData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            GridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            GridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            GridData.Location = new Point(6, 66);
+            GridData.MultiSelect = false;
+            GridData.Name = "GridData";
+            GridData.ReadOnly = true;
+            GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            GridData.Size = new Size(710, 251);
+            GridData.TabIndex = 0;
+            GridData.SelectionChanged += GridPeliculas_SelectionChanged;
             // 
             // BtnAgregar
             // 
@@ -155,15 +155,15 @@
             BtnSalir.UseVisualStyleBackColor = true;
             BtnSalir.Click += BtnSalir_Click;
             // 
-            // tabAgregarEliminar
+            // TabControl
             // 
-            tabAgregarEliminar.Controls.Add(tabPageLista);
-            tabAgregarEliminar.Controls.Add(tabPageAgregar);
-            tabAgregarEliminar.Location = new Point(3, 62);
-            tabAgregarEliminar.Name = "tabAgregarEliminar";
-            tabAgregarEliminar.SelectedIndex = 0;
-            tabAgregarEliminar.Size = new Size(1249, 400);
-            tabAgregarEliminar.TabIndex = 6;
+            TabControl.Controls.Add(tabPageLista);
+            TabControl.Controls.Add(tabPageAgregar_Editar);
+            TabControl.Location = new Point(3, 62);
+            TabControl.Name = "TabControl";
+            TabControl.SelectedIndex = 0;
+            TabControl.Size = new Size(1249, 400);
+            TabControl.TabIndex = 6;
             // 
             // tabPageLista
             // 
@@ -176,7 +176,7 @@
             tabPageLista.Controls.Add(BtnEliminar);
             tabPageLista.Controls.Add(BtnModificar);
             tabPageLista.Controls.Add(BtnSalir);
-            tabPageLista.Controls.Add(GridPeliculas);
+            tabPageLista.Controls.Add(GridData);
             tabPageLista.Controls.Add(BtnAgregar);
             tabPageLista.Location = new Point(4, 24);
             tabPageLista.Name = "tabPageLista";
@@ -230,7 +230,6 @@
             BtnBuscar.Text = "Buscar";
             BtnBuscar.TextAlign = ContentAlignment.MiddleRight;
             BtnBuscar.UseVisualStyleBackColor = true;
-           
             // 
             // TxtBuscar
             // 
@@ -257,28 +256,28 @@
             FilmPicture.TabIndex = 7;
             FilmPicture.TabStop = false;
             // 
-            // tabPageAgregar
+            // tabPageAgregar_Editar
             // 
-            tabPageAgregar.Controls.Add(checkInscripcionAbierta);
-            tabPageAgregar.Controls.Add(label2);
-            tabPageAgregar.Controls.Add(dateTimeFechaHora);
-            tabPageAgregar.Controls.Add(TxtExponente);
-            tabPageAgregar.Controls.Add(label3);
-            tabPageAgregar.Controls.Add(DuracionMinutos);
-            tabPageAgregar.Controls.Add(NumericCupo);
-            tabPageAgregar.Controls.Add(TxtDetalle);
-            tabPageAgregar.Controls.Add(TxtPortada);
-            tabPageAgregar.Controls.Add(TxtNombre);
-            tabPageAgregar.Controls.Add(TxtTitulo);
-            tabPageAgregar.Controls.Add(BtnCancelar);
-            tabPageAgregar.Controls.Add(BtnGuardar);
-            tabPageAgregar.Location = new Point(4, 24);
-            tabPageAgregar.Name = "tabPageAgregar";
-            tabPageAgregar.Padding = new Padding(3);
-            tabPageAgregar.Size = new Size(1241, 372);
-            tabPageAgregar.TabIndex = 1;
-            tabPageAgregar.Text = "Agregar/Editar";
-            tabPageAgregar.UseVisualStyleBackColor = true;
+            tabPageAgregar_Editar.Controls.Add(checkInscripcionAbierta);
+            tabPageAgregar_Editar.Controls.Add(label2);
+            tabPageAgregar_Editar.Controls.Add(dateTimeFechaHora);
+            tabPageAgregar_Editar.Controls.Add(TxtExponente);
+            tabPageAgregar_Editar.Controls.Add(label3);
+            tabPageAgregar_Editar.Controls.Add(DuracionMinutos);
+            tabPageAgregar_Editar.Controls.Add(NumericCupo);
+            tabPageAgregar_Editar.Controls.Add(TxtDetalle);
+            tabPageAgregar_Editar.Controls.Add(TxtPortada);
+            tabPageAgregar_Editar.Controls.Add(TxtNombre);
+            tabPageAgregar_Editar.Controls.Add(TxtTitulo);
+            tabPageAgregar_Editar.Controls.Add(BtnCancelar);
+            tabPageAgregar_Editar.Controls.Add(BtnGuardar);
+            tabPageAgregar_Editar.Location = new Point(4, 24);
+            tabPageAgregar_Editar.Name = "tabPageAgregar_Editar";
+            tabPageAgregar_Editar.Padding = new Padding(3);
+            tabPageAgregar_Editar.Size = new Size(1241, 372);
+            tabPageAgregar_Editar.TabIndex = 1;
+            tabPageAgregar_Editar.Text = "Agregar/Editar";
+            tabPageAgregar_Editar.UseVisualStyleBackColor = true;
             // 
             // checkInscripcionAbierta
             // 
@@ -452,16 +451,16 @@
             ClientSize = new Size(1252, 489);
             Controls.Add(LabelStatusMessage);
             Controls.Add(panel1);
-            Controls.Add(tabAgregarEliminar);
+            Controls.Add(TabControl);
             Name = "CapacitacionesView";
             Text = "CapacitacionesView";
-            ((System.ComponentModel.ISupportInitialize)GridPeliculas).EndInit();
-            tabAgregarEliminar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)GridData).EndInit();
+            TabControl.ResumeLayout(false);
             tabPageLista.ResumeLayout(false);
             tabPageLista.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)FilmPicture).EndInit();
-            tabPageAgregar.ResumeLayout(false);
-            tabPageAgregar.PerformLayout();
+            tabPageAgregar_Editar.ResumeLayout(false);
+            tabPageAgregar_Editar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)NumericCupo).EndInit();
             panel1.ResumeLayout(false);
             LabelStatusMessage.ResumeLayout(false);
@@ -472,14 +471,14 @@
 
         #endregion
 
-        private DataGridView GridPeliculas;
+        private DataGridView GridData;
         private FontAwesome.Sharp.IconButton BtnAgregar;
         private FontAwesome.Sharp.IconButton BtnEliminar;
         private FontAwesome.Sharp.IconButton BtnModificar;
         private FontAwesome.Sharp.IconButton BtnSalir;
-        private TabControl tabAgregarEliminar;
+        private TabControl TabControl;
         private TabPage tabPageLista;
-        private TabPage tabPageAgregar;
+        private TabPage tabPageAgregar_Editar;
         private Panel panel1;
         private Label label1;
         private Label LbBuscar;

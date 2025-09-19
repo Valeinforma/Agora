@@ -48,14 +48,14 @@ namespace Desktop.Views
 
             }
             
-            GridPeliculas.DataSource = _capacitaciones;
-            GridPeliculas.Columns["Id"].Visible = false;
-            GridPeliculas.Columns["IsDeleted"].Visible = false; // Ocultamos la columna eliminar
+            GridData.DataSource = _capacitaciones;
+            GridData.Columns["Id"].Visible = false;
+            GridData.Columns["IsDeleted"].Visible = false; // Ocultamos la columna eliminar
 
 }
         private void GridPeliculas_SelectionChanged(object sender, EventArgs e)
         {
-            if (GridPeliculas.RowCount > 0 && GridPeliculas.SelectedRows.Count > 0)
+            if (GridData.RowCount > 0 && GridData.SelectedRows.Count > 0)
             {
                 //    Capacitacion _curr = (Pelicula)GridPeliculas.SelectedRows[0].DataBoundItem;
                 //    FilmPicture.ImageLocation = peliculaSeleccionada.portada;
@@ -65,9 +65,9 @@ namespace Desktop.Views
         private async void BtnEliminar_Click(object sender, EventArgs e)
         {
             //checkeamos que haya peliculas seleccionadas
-            if (GridPeliculas.RowCount > 0 && GridPeliculas.SelectedRows.Count > 0)
+            if (GridData.RowCount > 0 && GridData.SelectedRows.Count > 0)
             {
-                Capacitacion entitySelected = (Capacitacion)GridPeliculas.SelectedRows[0].DataBoundItem;
+                Capacitacion entitySelected = (Capacitacion)GridData.SelectedRows[0].DataBoundItem;
                 var respuesta = MessageBox.Show($"¿Seguro que quieres borrar la capacitacion ?{entitySelected.Nombre}", "Borrar Pelicula", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (respuesta == DialogResult.Yes)
@@ -101,7 +101,7 @@ namespace Desktop.Views
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
               LimpiarControlAgregar();
-               tabAgregarEliminar.SelectedTab = tabPageAgregar;
+               TabControl.SelectedTab = tabPageAgregar_Editar;
         }
         private void LimpiarControlAgregar()
         {
@@ -116,7 +116,7 @@ namespace Desktop.Views
         }
         private void iconButton3_Click(object sender, EventArgs e)
         {
-            tabAgregarEliminar.SelectedTab = tabPageAgregar;
+            TabControl.SelectedTab = tabPageAgregar_Editar;
         }
 
         private async void iconButton2_Click(object sender, EventArgs e)
@@ -147,7 +147,7 @@ namespace Desktop.Views
                 _currentCapacitacion = null;
                 MessageBox.Show($"Capacitacion {CapacitacionAGuardar.Nombre} guardo correctamente");
                 await GetAllData();
-                tabAgregarEliminar.SelectedTab=tabPageLista;
+                TabControl.SelectedTab=tabPageLista;
             }
             else
             {
@@ -157,9 +157,9 @@ namespace Desktop.Views
 
         private void BtnModificar_Click(object sender, EventArgs e)
         {
-                if (GridPeliculas.RowCount > 0 && GridPeliculas.SelectedRows.Count > 0)
+                if (GridData.RowCount > 0 && GridData.SelectedRows.Count > 0)
                 {
-                    _currentCapacitacion = (Capacitacion)GridPeliculas.SelectedRows[0].DataBoundItem;
+                    _currentCapacitacion = (Capacitacion)GridData.SelectedRows[0].DataBoundItem;
                     TxtNombre.Text = _currentCapacitacion.Nombre;
                     TxtDetalle.Text = _currentCapacitacion.Detalle;
                     dateTimeFechaHora.Value = _currentCapacitacion.FechaHora;
@@ -167,13 +167,13 @@ namespace Desktop.Views
                     NumericCupo.Value = _currentCapacitacion.Cupo;
                     checkInscripcionAbierta.Checked = _currentCapacitacion.InscripcionAbierta;
 
-                    tabAgregarEliminar.SelectedTab = tabPageAgregar;
+                    TabControl.SelectedTab = tabPageAgregar_Editar;
                 }
         }
 
         private async Task iconButton1_Click(object sender, EventArgs e)
         {
-            GridPeliculas.DataSource = await _capacitacionService.GetAllAsync(TxtBuscar.Text);
+            GridData.DataSource = await _capacitacionService.GetAllAsync(TxtBuscar.Text);
         }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
@@ -202,9 +202,9 @@ namespace Desktop.Views
             if (!checkVerEliminados.Checked) return;
 
             //checkeamos que haya peliculas seleccionadas
-            if (GridPeliculas.RowCount > 0 && GridPeliculas.SelectedRows.Count > 0)
+            if (GridData.RowCount > 0 && GridData.SelectedRows.Count > 0)
             {
-                Capacitacion entitySelected = (Capacitacion)GridPeliculas.SelectedRows[0].DataBoundItem;
+                Capacitacion entitySelected = (Capacitacion)GridData.SelectedRows[0].DataBoundItem;
                 var respuesta = MessageBox.Show($"¿Seguro que quieres recuperar la capacitacion ?{entitySelected.Nombre}", "Confirmar Restauracion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (respuesta == DialogResult.Yes)
