@@ -50,8 +50,8 @@
     private async void LoginHasChanged()
     {
         
-            isAuthenticated = await _firebaseAuthService.IsUserAuthenticated();
-            StateHasChanged();
+        isAuthenticated = await _firebaseAuthService.IsUserAuthenticated();
+        StateHasChanged();
         
 	}
 }
