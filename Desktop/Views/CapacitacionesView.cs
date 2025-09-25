@@ -52,7 +52,7 @@ namespace Desktop.Views
             GridData.Columns["Id"].Visible = false;
             GridData.Columns["IsDeleted"].Visible = false; // Ocultamos la columna eliminar
 
-}
+        }
         private void GridPeliculas_SelectionChanged(object sender, EventArgs e)
         {
             if (GridData.RowCount > 0 && GridData.SelectedRows.Count > 0)
@@ -179,17 +179,15 @@ namespace Desktop.Views
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
             
-            
-            //        BtnBuscar.PerformClick();
+              BtnBuscar.PerformClick();
         }
 
         //}
 
         private void TimerStatusBar_Tick(object sender, EventArgs e)
         {
-            //    LabelStatusMessage.Text = string.Empty;
-            //    TimerStatusBar.Stop();
-            //}
+            LabelStatusMessage.Text = string.Empty;
+            TimerStatusBar.Stop(); // Detener el temporizador después de mostrar el mensaje
         }
 
         private async void checkVerEliminados_CheckedChanged(object sender, EventArgs e)
