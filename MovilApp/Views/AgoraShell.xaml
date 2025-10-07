@@ -8,6 +8,7 @@
     xmlns:commons="clr-namespace:MovilApp.Views"
     xmlns:contentviews="clr-namespace:MovilApp.ContentViews"
     xmlns:viewmodels="clr-namespace:MovilApp.ViewModels"
+    xmlns:views="clr-namespace:MovilApp.Views.Capacitaciones"
     FlyoutBehavior="Disabled"
     Title ="ÀgoraApp">
     
@@ -44,6 +45,12 @@
                 ContentTemplate="{DataTemplate commons:AddEditCarreraView}"
                 Route="AgregarEditarCarrera" />
     </Tab><!-->
+    </FlyoutItem>
+    <FlyoutItem Title="📖 Buscar Capacitaciones" Icon="search.png">
+        <ShellContent
+            Title="Buscar Capacitaciones"
+            ContentTemplate="{DataTemplate views:CapacitacionesView}"
+            Route="BuscarCapacitaciones" />
     </FlyoutItem>
     <MenuItem Text="Cerrar sesión"
       Command="{Binding LogoutCommand}"
