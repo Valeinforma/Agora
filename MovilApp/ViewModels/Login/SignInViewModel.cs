@@ -2,6 +2,10 @@
 using CommunityToolkit.Mvvm.Input;
 using Firebase.Auth;
 using Firebase.Auth.Providers;
+using MovilApp.Views;
+using Service.Enums;
+using Service.Models;
+using Service.Services;
 using System.Net.Http.Headers;
 
 namespace MovilApp.ViewModels.Login
@@ -9,6 +13,7 @@ namespace MovilApp.ViewModels.Login
     public partial class SigInViewModel : ObservableObject
     {
         private readonly FirebaseAuthClient _clientAuth;
+        GenericService<Usuario> _usuarioService = new();
         private readonly string FirebaseApiKey;
         private readonly string RequestUri;
 
@@ -25,6 +30,13 @@ namespace MovilApp.ViewModels.Login
 
         [ObservableProperty]
         private string verifyPassword;
+
+
+        [ObservableProperty]
+        private string lastname;
+
+        [ObservableProperty]
+        private string dni;
 
         public SigInViewModel()
         {
@@ -53,10 +65,26 @@ namespace MovilApp.ViewModels.Login
             if (password == verifyPassword)
             {
                 try
-                {
-                    var user = await _clientAuth.CreateUserWithEmailAndPasswordAsync(email, password, name);
+                { 
+                    var fullname = name + " " + lastname;
+                    var user = await _clientAuth.CreateUserWithEmailAndPasswordAsync(email, password, fullname);
+                    // Guardar el usuario en la base de datos
+                    var nuevoUsuario = new Usuario
+                    {
+                        Apellido = lastname,
+                        Nombre = name,
+                        Dni = dni,
+                        Email = email,
+                        TipoUsuarioEnum = TipoUsuarioEnum.Asistente,
+                        IsDeleted = false,
+                    };
+                    var usuarioCreado = await _usuarioService.AddAsync(nuevoUsuario);
                     await SendVerificationEmailAsync(user.User.GetIdTokenAsync().Result);
                     await Application.Current.MainPage.DisplayAlert("Registrarse", "Cuenta creada!", "Ok");
+                    if (Application.Current?.MainPage is AgoraShell shell)
+                    {
+                        await shell.GoToAsync("//Login");
+                    }
                 }
                 catch (FirebaseAuthException error) // Use alias here 
                 {

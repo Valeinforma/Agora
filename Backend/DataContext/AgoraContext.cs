@@ -29,16 +29,16 @@ namespace Backend.DataContext
                 new TipoInscripcion { Id = 4, Nombre = "Jubilado" }
             );
                     modelBuilder.Entity<Usuario>().HasData(
-                new Usuario { Id = 1, Nombre = "Juan", Apellido = "Pérez", Dni = "12345678", Email = "juan.perez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Estudiante, DeleteTime = DateTime.MinValue, IsDeleted = false },
+                new Usuario { Id = 1, Nombre = "Juan", Apellido = "Pérez", Dni = "12345678", Email = "juan.perez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = DateTime.MinValue, IsDeleted = false },
                 new Usuario { Id = 2, Nombre = "María", Apellido = "García", Dni = "23456789", Email = "maria.garcia@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Docente, DeleteTime = DateTime.MinValue, IsDeleted = false },
-                new Usuario { Id = 3, Nombre = "Carlos", Apellido = "López", Dni = "34567890", Email = "carlos.lopez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Estudiante, DeleteTime = DateTime.MinValue, IsDeleted = false },
+                new Usuario { Id = 3, Nombre = "Carlos", Apellido = "López", Dni = "34567890", Email = "carlos.lopez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = DateTime.MinValue, IsDeleted = false },
                 new Usuario { Id = 4, Nombre = "Ana", Apellido = "Martínez", Dni = "45678901", Email = "ana.martinez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Administrador, DeleteTime = DateTime.MinValue, IsDeleted = false },
                 new Usuario { Id = 5, Nombre = "Luis", Apellido = "Fernández", Dni = "56789012", Email = "luis.fernandez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Docente, DeleteTime = DateTime.MinValue, IsDeleted = false },
-                new Usuario { Id = 6, Nombre = "Sofía", Apellido = "Gómez", Dni = "67890123", Email = "sofia.gomez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Estudiante, DeleteTime = DateTime.MinValue, IsDeleted = false },
+                new Usuario { Id = 6, Nombre = "Sofía", Apellido = "Gómez", Dni = "67890123", Email = "sofia.gomez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = DateTime.MinValue, IsDeleted = false },
                 new Usuario { Id = 7, Nombre = "Miguel", Apellido = "Díaz", Dni = "78901234", Email = "miguel.diaz@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Docente, DeleteTime = DateTime.MinValue, IsDeleted = false },
-                new Usuario { Id = 8, Nombre = "Lucía", Apellido = "Sánchez", Dni = "89012345", Email = "lucia.sanchez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Estudiante, DeleteTime = DateTime.MinValue, IsDeleted = false },
+                new Usuario { Id = 8, Nombre = "Lucía", Apellido = "Sánchez", Dni = "89012345", Email = "lucia.sanchez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = DateTime.MinValue, IsDeleted = false },
                 new Usuario { Id = 9, Nombre = "Diego", Apellido = "Romero", Dni = "90123456", Email = "diego.romero@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Administrador, DeleteTime = DateTime.MinValue, IsDeleted = false },
-                new Usuario { Id = 10, Nombre = "Valentina", Apellido = "Ruiz", Dni = "11223344", Email = "valentina.ruiz@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Estudiante, DeleteTime = DateTime.MinValue, IsDeleted = false }
+                new Usuario { Id = 10, Nombre = "Valentina", Apellido = "Ruiz", Dni = "11223344", Email = "valentina.ruiz@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = DateTime.MinValue, IsDeleted = false }
             );
 
 
