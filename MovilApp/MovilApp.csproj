@@ -72,6 +72,9 @@
 	  <Compile Update="ContentViews\FlyoutHeader.xaml.cs">
 	    <DependentUpon>FlyoutHeader.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\Admin\AddEditCapacitacionView.xaml.cs">
+	    <DependentUpon>AddEditCapacitacionView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\Login\LoginView.xaml.cs">
 	    <DependentUpon>LoginView.xaml</DependentUpon>
 	  </Compile>
@@ -85,6 +88,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ContentViews\FlyoutHeader.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Admin\AddEditCapacitacionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Admin\AdminCapacitacionesView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AgoraShell.xaml">

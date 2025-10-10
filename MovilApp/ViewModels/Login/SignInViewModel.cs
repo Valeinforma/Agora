@@ -2,15 +2,17 @@
 using CommunityToolkit.Mvvm.Input;
 using Firebase.Auth;
 using Firebase.Auth.Providers;
+using Firebase.Auth.Requests;
 using MovilApp.Views;
 using Service.Enums;
 using Service.Models;
 using Service.Services;
+using System.Net;
 using System.Net.Http.Headers;
 
 namespace MovilApp.ViewModels.Login
 {
-    public partial class SigInViewModel : ObservableObject
+    public partial class SignInViewModel : ObservableObject
     {
         private readonly FirebaseAuthClient _clientAuth;
         GenericService<Usuario> _usuarioService = new();
@@ -18,31 +20,38 @@ namespace MovilApp.ViewModels.Login
         private readonly string RequestUri;
 
         public IRelayCommand RegistrarseCommand { get; }
+        public IRelayCommand VolverCommand { get; }
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(RegistrarseCommand))]
         private string name;
 
         [ObservableProperty]
-        private string email;
-
-        [ObservableProperty]
-        private string password;
-
-        [ObservableProperty]
-        private string verifyPassword;
-
-
-        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(RegistrarseCommand))]
         private string lastname;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(RegistrarseCommand))]
         private string dni;
 
-        public SigInViewModel()
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(RegistrarseCommand))]
+        private string email;
+
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(RegistrarseCommand))]
+        private string password;
+
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(RegistrarseCommand))]
+        private string verifyPassword;
+
+        public SignInViewModel()
         {
             FirebaseApiKey = Service.Properties.Resources.ApiKeyFirebase;
             RequestUri = "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=" + FirebaseApiKey;
-            RegistrarseCommand = new RelayCommand(Registrarse);
+            RegistrarseCommand = new AsyncRelayCommand(Registrarse, PermitirRegistrarse);
+            VolverCommand = new AsyncRelayCommand(Volver);
             _clientAuth = new FirebaseAuthClient(new FirebaseAuthConfig()
             {
                 ApiKey = FirebaseApiKey,
@@ -51,21 +60,38 @@ namespace MovilApp.ViewModels.Login
                 {
                         new EmailProvider()
                 }
-            }); 
+            });
         }
 
-        private async void Registrarse()
+        private bool PermitirRegistrarse()
         {
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(verifyPassword))
+            return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Email) 
+                && !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(VerifyPassword) 
+                && !string.IsNullOrEmpty(Dni) && !string.IsNullOrEmpty(Lastname);
+            ;
+
+        }
+
+        private async Task Volver()
+        {
+            if (Application.Current?.MainPage is AgoraShell shell)
             {
-                await Application.Current.MainPage.DisplayAlert("Registrarse", "Por favor, complete todos los campos.", "Ok");
-                return;
+                await shell.GoToAsync("//Login");
             }
 
+        }
+
+        private async Task Registrarse()
+        {
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(verifyPassword))
+            {
+                await Application.Current.MainPage.DisplayAlert("Registrarse", "Por favor complete todos los campos", "Ok");
+                return;
+            }
             if (password == verifyPassword)
             {
                 try
-                { 
+                {
                     var fullname = name + " " + lastname;
                     var user = await _clientAuth.CreateUserWithEmailAndPasswordAsync(email, password, fullname);
                     // Guardar el usuario en la base de datos
@@ -77,6 +103,7 @@ namespace MovilApp.ViewModels.Login
                         Email = email,
                         TipoUsuarioEnum = TipoUsuarioEnum.Asistente,
                         IsDeleted = false,
+                        DeleteTime = DateTime.Parse("1900-01-01")
                     };
                     var usuarioCreado = await _usuarioService.AddAsync(nuevoUsuario);
                     await SendVerificationEmailAsync(user.User.GetIdTokenAsync().Result);

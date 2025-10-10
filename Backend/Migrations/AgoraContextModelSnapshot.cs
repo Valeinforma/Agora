@@ -68,7 +68,7 @@ namespace Backend.Migrations
                             Cupo = 30,
                             DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Detalle = "Aprende los conceptos básicos de programación.",
-                            FechaHora = new DateTime(2025, 10, 12, 16, 54, 14, 156, DateTimeKind.Local).AddTicks(202),
+                            FechaHora = new DateTime(2025, 10, 19, 17, 13, 58, 550, DateTimeKind.Local).AddTicks(2842),
                             InscripcionAbierta = true,
                             IsDeleted = false,
                             Nombre = "Introducción a la Programación",
@@ -80,11 +80,23 @@ namespace Backend.Migrations
                             Cupo = 25,
                             DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Detalle = "Crea aplicaciones web modernas con ASP.NET Core.",
-                            FechaHora = new DateTime(2025, 10, 22, 16, 54, 14, 156, DateTimeKind.Local).AddTicks(236),
+                            FechaHora = new DateTime(2025, 10, 29, 17, 13, 58, 550, DateTimeKind.Local).AddTicks(2872),
                             InscripcionAbierta = true,
                             IsDeleted = false,
                             Nombre = "Desarrollo Web con ASP.NET Core",
                             Ponente = "Ana Martínez"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Cupo = 25,
+                            DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Detalle = "Crea webapps con Angular y ASP.NET Core.",
+                            FechaHora = new DateTime(2025, 10, 29, 17, 13, 58, 550, DateTimeKind.Local).AddTicks(2877),
+                            InscripcionAbierta = true,
+                            IsDeleted = false,
+                            Nombre = "ASP.NET Core con Angular",
+                            Ponente = "Pedro Martínez"
                         });
                 });
 
@@ -117,7 +129,7 @@ namespace Backend.Migrations
                     b.Property<int?>("UsuarioCobroId")
                         .HasColumnType("int");
 
-                    b.Property<int>("usuarioId")
+                    b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -128,7 +140,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("UsuarioCobroId");
 
-                    b.HasIndex("usuarioId");
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Inscripciones");
 
@@ -136,112 +148,112 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            Acreditado = false,
+                            Acreditado = true,
                             CapacitacionId = 1,
-                            Importe = 10000m,
+                            Importe = 0m,
                             IsDeleted = false,
                             Pagado = false,
                             TipoInscripcionId = 1,
-                            usuarioId = 1
+                            UsuarioId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Acreditado = false,
-                            CapacitacionId = 2,
-                            Importe = 5000m,
+                            Acreditado = true,
+                            CapacitacionId = 1,
+                            Importe = 12000m,
                             IsDeleted = false,
                             Pagado = false,
-                            TipoInscripcionId = 2,
-                            usuarioId = 2
+                            TipoInscripcionId = 1,
+                            UsuarioId = 2
                         },
                         new
                         {
                             Id = 3,
-                            Acreditado = false,
-                            CapacitacionId = 3,
-                            Importe = 3000m,
+                            Acreditado = true,
+                            CapacitacionId = 1,
+                            Importe = 0m,
                             IsDeleted = false,
                             Pagado = false,
                             TipoInscripcionId = 3,
-                            usuarioId = 3
+                            UsuarioId = 3
                         },
                         new
                         {
                             Id = 4,
-                            Acreditado = false,
-                            CapacitacionId = 4,
-                            Importe = 6000m,
+                            Acreditado = true,
+                            CapacitacionId = 2,
+                            Importe = 8000m,
                             IsDeleted = false,
                             Pagado = false,
                             TipoInscripcionId = 2,
-                            usuarioId = 4
+                            UsuarioId = 5
                         },
                         new
                         {
                             Id = 5,
-                            Acreditado = false,
-                            CapacitacionId = 5,
-                            Importe = 5000m,
+                            Acreditado = true,
+                            CapacitacionId = 2,
+                            Importe = 12000m,
                             IsDeleted = false,
                             Pagado = false,
-                            TipoInscripcionId = 2,
-                            usuarioId = 5
+                            TipoInscripcionId = 1,
+                            UsuarioId = 4
                         },
                         new
                         {
                             Id = 6,
                             Acreditado = false,
-                            CapacitacionId = 6,
-                            Importe = 4000m,
+                            CapacitacionId = 3,
+                            Importe = 15000m,
                             IsDeleted = false,
                             Pagado = false,
-                            TipoInscripcionId = 3,
-                            usuarioId = 6
+                            TipoInscripcionId = 1,
+                            UsuarioId = 1
                         },
                         new
                         {
                             Id = 7,
                             Acreditado = false,
-                            CapacitacionId = 7,
-                            Importe = 6000m,
+                            CapacitacionId = 3,
+                            Importe = 0m,
                             IsDeleted = false,
                             Pagado = false,
-                            TipoInscripcionId = 2,
-                            usuarioId = 7
+                            TipoInscripcionId = 3,
+                            UsuarioId = 2
                         },
                         new
                         {
                             Id = 8,
                             Acreditado = false,
-                            CapacitacionId = 8,
-                            Importe = 3000m,
+                            CapacitacionId = 3,
+                            Importe = 15000m,
                             IsDeleted = false,
                             Pagado = false,
-                            TipoInscripcionId = 3,
-                            usuarioId = 8
+                            TipoInscripcionId = 1,
+                            UsuarioId = 3
                         },
                         new
                         {
                             Id = 9,
                             Acreditado = false,
-                            CapacitacionId = 9,
-                            Importe = 12000m,
+                            CapacitacionId = 3,
+                            Importe = 15000m,
                             IsDeleted = false,
                             Pagado = false,
                             TipoInscripcionId = 1,
-                            usuarioId = 9
+                            UsuarioId = 4
                         },
                         new
                         {
                             Id = 10,
                             Acreditado = false,
-                            CapacitacionId = 10,
-                            Importe = 4000m,
+                            CapacitacionId = 3,
+                            Importe = 10000m,
                             IsDeleted = false,
                             Pagado = false,
-                            TipoInscripcionId = 3,
-                            usuarioId = 10
+                            TipoInscripcionId = 2,
+                            UsuarioId = 5
                         });
                 });
 
@@ -275,19 +287,19 @@ namespace Backend.Migrations
                         {
                             Id = 2,
                             IsDeleted = false,
-                            Nombre = "Docente"
+                            Nombre = "Docentes"
                         },
                         new
                         {
                             Id = 3,
                             IsDeleted = false,
-                            Nombre = "Estudiante"
+                            Nombre = "Estudiantes"
                         },
                         new
                         {
                             Id = 4,
                             IsDeleted = false,
-                            Nombre = "Jubilado"
+                            Nombre = "Jubilados"
                         });
                 });
 
@@ -380,7 +392,7 @@ namespace Backend.Migrations
                         {
                             Id = 8,
                             CapacitacionId = 2,
-                            Costo = 30000m,
+                            Costo = 3000m,
                             IsDeleted = false,
                             TipoInscripcionId = 4
                         });
@@ -427,112 +439,68 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            Apellido = "Pérez",
-                            DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Dni = "12345678",
-                            Email = "juan.perez@gmail.com",
+                            Apellido = "Ramírez",
+                            DeleteTime = new DateTime(1900, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Dni = "43111222",
+                            Email = "tadeo@isp20.edu.ar",
                             IsDeleted = false,
-                            Nombre = "Juan",
+                            Nombre = "Tadeo",
                             TipoUsuarioEnum = 0
                         },
                         new
                         {
                             Id = 2,
-                            Apellido = "García",
-                            DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Dni = "23456789",
-                            Email = "maria.garcia@gmail.com",
-                            IsDeleted = false,
-                            Nombre = "María",
-                            TipoUsuarioEnum = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Apellido = "López",
-                            DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Dni = "34567890",
-                            Email = "carlos.lopez@gmail.com",
-                            IsDeleted = false,
-                            Nombre = "Carlos",
-                            TipoUsuarioEnum = 0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Apellido = "Martínez",
-                            DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Dni = "45678901",
-                            Email = "ana.martinez@gmail.com",
-                            IsDeleted = false,
-                            Nombre = "Ana",
-                            TipoUsuarioEnum = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Apellido = "Fernández",
-                            DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Dni = "56789012",
-                            Email = "luis.fernandez@gmail.com",
-                            IsDeleted = false,
-                            Nombre = "Luis",
-                            TipoUsuarioEnum = 1
-                        },
-                        new
-                        {
-                            Id = 6,
                             Apellido = "Gómez",
-                            DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Dni = "67890123",
-                            Email = "sofia.gomez@gmail.com",
-                            IsDeleted = false,
-                            Nombre = "Sofía",
-                            TipoUsuarioEnum = 0
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Apellido = "Díaz",
-                            DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Dni = "78901234",
-                            Email = "miguel.diaz@gmail.com",
-                            IsDeleted = false,
-                            Nombre = "Miguel",
-                            TipoUsuarioEnum = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Apellido = "Sánchez",
-                            DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Dni = "89012345",
-                            Email = "lucia.sanchez@gmail.com",
+                            DeleteTime = new DateTime(1900, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Dni = "40222333",
+                            Email = "lucia.gomez@isp20.edu.ar",
                             IsDeleted = false,
                             Nombre = "Lucía",
                             TipoUsuarioEnum = 0
                         },
                         new
                         {
-                            Id = 9,
-                            Apellido = "Romero",
-                            DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Dni = "90123456",
-                            Email = "diego.romero@gmail.com",
+                            Id = 3,
+                            Apellido = "Pérez",
+                            DeleteTime = new DateTime(1900, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Dni = "39555111",
+                            Email = "martin.perez@isp20.edu.ar",
                             IsDeleted = false,
-                            Nombre = "Diego",
-                            TipoUsuarioEnum = 2
+                            Nombre = "Martín",
+                            TipoUsuarioEnum = 0
                         },
                         new
                         {
-                            Id = 10,
-                            Apellido = "Ruiz",
-                            DeleteTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Dni = "11223344",
-                            Email = "valentina.ruiz@gmail.com",
+                            Id = 4,
+                            Apellido = "Sosa",
+                            DeleteTime = new DateTime(1900, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Dni = "38888999",
+                            Email = "carla.sosa@isp20.edu.ar",
                             IsDeleted = false,
-                            Nombre = "Valentina",
+                            Nombre = "Carla",
                             TipoUsuarioEnum = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Apellido = "López",
+                            DeleteTime = new DateTime(1900, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Dni = "37777666",
+                            Email = "diego.lopez@isp20.edu.ar",
+                            IsDeleted = false,
+                            Nombre = "Diego",
+                            TipoUsuarioEnum = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Apellido = "Admin",
+                            DeleteTime = new DateTime(1900, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Dni = "00000000",
+                            Email = "soporte@agora.isp20.edu.ar",
+                            IsDeleted = false,
+                            Nombre = "Soporte",
+                            TipoUsuarioEnum = 2
                         });
                 });
 
@@ -556,7 +524,7 @@ namespace Backend.Migrations
 
                     b.HasOne("Service.Models.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("usuarioId")
+                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

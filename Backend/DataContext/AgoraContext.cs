@@ -5,7 +5,7 @@ using Service.Models;
 
 namespace Backend.DataContext
 {
-    public class AgoraContext: DbContext
+    public class AgoraContext : DbContext
     {
         public DbSet<TipoInscripcion> TipoInscripciones { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
@@ -21,32 +21,38 @@ namespace Backend.DataContext
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Cargamos los datos iniciales de tipo inscripción (publico en general, docente, estudiante jubilados)
+            // Cargamos los datos iniciales de tipo de inscripciones(Público en general, Docentes, Estudiantes, Jubilados)
             modelBuilder.Entity<TipoInscripcion>().HasData(
                 new TipoInscripcion { Id = 1, Nombre = "Público en general" },
-                new TipoInscripcion { Id = 2, Nombre = "Docente" },
-                new TipoInscripcion { Id = 3, Nombre = "Estudiante" },
-                new TipoInscripcion { Id = 4, Nombre = "Jubilado" }
-            );
-                    modelBuilder.Entity<Usuario>().HasData(
-                new Usuario { Id = 1, Nombre = "Juan", Apellido = "Pérez", Dni = "12345678", Email = "juan.perez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = DateTime.MinValue, IsDeleted = false },
-                new Usuario { Id = 2, Nombre = "María", Apellido = "García", Dni = "23456789", Email = "maria.garcia@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Docente, DeleteTime = DateTime.MinValue, IsDeleted = false },
-                new Usuario { Id = 3, Nombre = "Carlos", Apellido = "López", Dni = "34567890", Email = "carlos.lopez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = DateTime.MinValue, IsDeleted = false },
-                new Usuario { Id = 4, Nombre = "Ana", Apellido = "Martínez", Dni = "45678901", Email = "ana.martinez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Administrador, DeleteTime = DateTime.MinValue, IsDeleted = false },
-                new Usuario { Id = 5, Nombre = "Luis", Apellido = "Fernández", Dni = "56789012", Email = "luis.fernandez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Docente, DeleteTime = DateTime.MinValue, IsDeleted = false },
-                new Usuario { Id = 6, Nombre = "Sofía", Apellido = "Gómez", Dni = "67890123", Email = "sofia.gomez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = DateTime.MinValue, IsDeleted = false },
-                new Usuario { Id = 7, Nombre = "Miguel", Apellido = "Díaz", Dni = "78901234", Email = "miguel.diaz@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Docente, DeleteTime = DateTime.MinValue, IsDeleted = false },
-                new Usuario { Id = 8, Nombre = "Lucía", Apellido = "Sánchez", Dni = "89012345", Email = "lucia.sanchez@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = DateTime.MinValue, IsDeleted = false },
-                new Usuario { Id = 9, Nombre = "Diego", Apellido = "Romero", Dni = "90123456", Email = "diego.romero@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Administrador, DeleteTime = DateTime.MinValue, IsDeleted = false },
-                new Usuario { Id = 10, Nombre = "Valentina", Apellido = "Ruiz", Dni = "11223344", Email = "valentina.ruiz@gmail.com", TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = DateTime.MinValue, IsDeleted = false }
+                new TipoInscripcion { Id = 2, Nombre = "Docentes" },
+                new TipoInscripcion { Id = 3, Nombre = "Estudiantes" },
+                new TipoInscripcion { Id = 4, Nombre = "Jubilados" }
             );
 
+            //cargamos los datos iniciales de usuarios
+            var fechaNula = new DateTime(1900, 1, 1);
 
+            // ---------- USUARIOS ----------
+            var usuarios = new[]
+            {
+        new Usuario { Id = 1, Apellido = "Ramírez", Nombre = "Tadeo", Dni = "43111222", Email = "tadeo@isp20.edu.ar", TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = fechaNula, IsDeleted = false },
+        new Usuario { Id = 2, Apellido = "Gómez",   Nombre = "Lucía", Dni = "40222333", Email = "lucia.gomez@isp20.edu.ar", TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = fechaNula, IsDeleted = false },
+        new Usuario { Id = 3, Apellido = "Pérez",   Nombre = "Martín",Dni = "39555111", Email = "martin.perez@isp20.edu.ar", TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = fechaNula, IsDeleted = false },
+        new Usuario { Id = 4, Apellido = "Sosa",    Nombre = "Carla", Dni = "38888999", Email = "carla.sosa@isp20.edu.ar",  TipoUsuarioEnum = TipoUsuarioEnum.Asistente, DeleteTime = fechaNula, IsDeleted = false },
+        new Usuario { Id = 5, Apellido = "López",   Nombre = "Diego", Dni = "37777666", Email = "diego.lopez@isp20.edu.ar", TipoUsuarioEnum = TipoUsuarioEnum.Docente,    DeleteTime = fechaNula, IsDeleted = false },
+        // Cobrador/Admin
+        new Usuario { Id = 6, Apellido = "Admin",   Nombre = "Soporte", Dni = "00000000", Email = "soporte@agora.isp20.edu.ar", TipoUsuarioEnum = TipoUsuarioEnum.Administrador, DeleteTime = fechaNula, IsDeleted = false }
+    };
+            modelBuilder.Entity<Usuario>().HasData(usuarios);
+
+            //cargamos los datos iniciales de capacitaciones
             modelBuilder.Entity<Capacitacion>().HasData(
-               new Capacitacion { Id = 1, Nombre = "Introducción a la Programación", Detalle = "Aprende los conceptos básicos de programación.", Ponente = "Carlos Gómez", FechaHora = DateTime.Now.AddDays(10), Cupo = 30, InscripcionAbierta = true },
-               new Capacitacion { Id = 2, Nombre = "Desarrollo Web con ASP.NET Core", Detalle = "Crea aplicaciones web modernas con ASP.NET Core.", Ponente = "Ana Martínez", FechaHora = DateTime.Now.AddDays(20), Cupo = 25, InscripcionAbierta = true }
-           );
-            //cargamos los tipos de inscripción para las capacitaciones, definiendo el costo para cada tipo
+                new Capacitacion { Id = 1, Nombre = "Introducción a la Programación", Detalle = "Aprende los conceptos básicos de programación.", Ponente = "Carlos Gómez", FechaHora = DateTime.Now.AddDays(10), Cupo = 30, InscripcionAbierta = true },
+                new Capacitacion { Id = 2, Nombre = "Desarrollo Web con ASP.NET Core", Detalle = "Crea aplicaciones web modernas con ASP.NET Core.", Ponente = "Ana Martínez", FechaHora = DateTime.Now.AddDays(20), Cupo = 25, InscripcionAbierta = true },
+                new Capacitacion { Id = 3, Nombre = "ASP.NET Core con Angular", Detalle = "Crea webapps con Angular y ASP.NET Core.", Ponente = "Pedro Martínez", FechaHora = DateTime.Now.AddDays(20), Cupo = 25, InscripcionAbierta = true }
+            );
+
+            // cargamos los datos iniciales de tipos de inscripciones para capacitaciones, definiendo el costo de inscripción paracada tipo
             modelBuilder.Entity<TipoInscripcionCapacitacion>().HasData(
                 new TipoInscripcionCapacitacion { Id = 1, TipoInscripcionId = 1, CapacitacionId = 1, Costo = 10000 },
                 new TipoInscripcionCapacitacion { Id = 2, TipoInscripcionId = 2, CapacitacionId = 1, Costo = 5000 },
@@ -55,26 +61,42 @@ namespace Backend.DataContext
                 new TipoInscripcionCapacitacion { Id = 5, TipoInscripcionId = 1, CapacitacionId = 2, Costo = 12000 },
                 new TipoInscripcionCapacitacion { Id = 6, TipoInscripcionId = 2, CapacitacionId = 2, Costo = 6000 },
                 new TipoInscripcionCapacitacion { Id = 7, TipoInscripcionId = 3, CapacitacionId = 2, Costo = 4000 },
-                new TipoInscripcionCapacitacion { Id = 8, TipoInscripcionId = 4, CapacitacionId = 2, Costo = 30000 }
+                new TipoInscripcionCapacitacion { Id = 8, TipoInscripcionId = 4, CapacitacionId = 2, Costo = 3000 }
             );
 
-            // cargamos los datos iniciales de inscripciones
-                        modelBuilder.Entity<Inscripcion>().HasData(
-                new Inscripcion { Id = 1, usuarioId = 1, TipoInscripcionId = 1, CapacitacionId = 1, Acreditado = false, Importe = 10000, Pagado = false, UsuarioCobroId = null, IsDeleted = false },
-                new Inscripcion { Id = 2, usuarioId = 2, TipoInscripcionId = 2, CapacitacionId = 2, Acreditado = false, Importe = 5000, Pagado = false, UsuarioCobroId = null, IsDeleted = false },
-                new Inscripcion { Id = 3, usuarioId = 3, TipoInscripcionId = 3, CapacitacionId = 3, Acreditado = false, Importe = 3000, Pagado = false, UsuarioCobroId = null, IsDeleted = false },
-                new Inscripcion { Id = 4, usuarioId = 4, TipoInscripcionId = 2, CapacitacionId = 4, Acreditado = false, Importe = 6000, Pagado = false, UsuarioCobroId = null, IsDeleted = false },
-                new Inscripcion { Id = 5, usuarioId = 5, TipoInscripcionId = 2, CapacitacionId = 5, Acreditado = false, Importe = 5000, Pagado = false, UsuarioCobroId = null, IsDeleted = false },
-                new Inscripcion { Id = 6, usuarioId = 6, TipoInscripcionId = 3, CapacitacionId = 6, Acreditado = false, Importe = 4000, Pagado = false, UsuarioCobroId = null, IsDeleted = false },
-                new Inscripcion { Id = 7, usuarioId = 7, TipoInscripcionId = 2, CapacitacionId = 7, Acreditado = false, Importe = 6000, Pagado = false, UsuarioCobroId = null, IsDeleted = false },
-                new Inscripcion { Id = 8, usuarioId = 8, TipoInscripcionId = 3, CapacitacionId = 8, Acreditado = false, Importe = 3000, Pagado = false, UsuarioCobroId = null, IsDeleted = false },
-                new Inscripcion { Id = 9, usuarioId = 9, TipoInscripcionId = 1, CapacitacionId = 9, Acreditado = false, Importe = 12000, Pagado = false, UsuarioCobroId = null, IsDeleted = false },
-                new Inscripcion { Id = 10, usuarioId = 10, TipoInscripcionId = 3, CapacitacionId = 10, Acreditado = false, Importe = 4000, Pagado = false, UsuarioCobroId = null, IsDeleted = false }
-            );
-             
-            
+            // cargamos los datos iniciales de inscripciones con el email
+            var inscripciones = new[]
+   {
+        // Históricas (acreditadas)
+        new Inscripcion { Id = 1,  UsuarioId = 1, TipoInscripcionId = 1, CapacitacionId = 1, Acreditado = true,  Importe = 0m,     Pagado = false, UsuarioCobroId = null, IsDeleted = false },
+        new Inscripcion { Id = 2,  UsuarioId = 2, TipoInscripcionId = 1, CapacitacionId = 1, Acreditado = true,  Importe = 12000m, Pagado = false,  UsuarioCobroId = null,    IsDeleted = false },
+        new Inscripcion { Id = 3,  UsuarioId = 3, TipoInscripcionId = 3, CapacitacionId = 1, Acreditado = true,  Importe = 0m,     Pagado = false, UsuarioCobroId = null, IsDeleted = false },
+        new Inscripcion { Id = 4,  UsuarioId = 5, TipoInscripcionId = 2, CapacitacionId = 2, Acreditado = true,  Importe = 8000m,  Pagado = false,  UsuarioCobroId = null,    IsDeleted = false },
+        new Inscripcion { Id = 5,  UsuarioId = 4, TipoInscripcionId = 1, CapacitacionId = 2, Acreditado = true,  Importe = 12000m, Pagado = false,  UsuarioCobroId = null,    IsDeleted = false },
 
-            
+        // Vigente (no acreditadas aún)
+        new Inscripcion { Id = 6,  UsuarioId = 1, TipoInscripcionId = 1, CapacitacionId = 3, Acreditado = false, Importe = 15000m, Pagado = false, UsuarioCobroId = null, IsDeleted = false },
+        new Inscripcion { Id = 7,  UsuarioId = 2, TipoInscripcionId = 3, CapacitacionId = 3, Acreditado = false, Importe = 0m,     Pagado = false, UsuarioCobroId = null, IsDeleted = false },
+        new Inscripcion { Id = 8,  UsuarioId = 3, TipoInscripcionId = 1, CapacitacionId = 3, Acreditado = false, Importe = 15000m, Pagado = false,  UsuarioCobroId = null,    IsDeleted = false },
+        new Inscripcion { Id = 9,  UsuarioId = 4, TipoInscripcionId = 1, CapacitacionId = 3, Acreditado = false, Importe = 15000m, Pagado = false, UsuarioCobroId = null, IsDeleted = false },
+        new Inscripcion { Id = 10, UsuarioId = 5, TipoInscripcionId = 2, CapacitacionId = 3, Acreditado = false, Importe = 10000m, Pagado = false,  UsuarioCobroId = null,    IsDeleted = false }
+    };
+            modelBuilder.Entity<Inscripcion>().HasData(inscripciones);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             // Configuramos las querys para que no devuelvan los elementos eliminados
             modelBuilder.Entity<TipoInscripcion>().HasQueryFilter(p => !p.IsDeleted);
@@ -82,8 +104,6 @@ namespace Backend.DataContext
             modelBuilder.Entity<Capacitacion>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<TipoInscripcionCapacitacion>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<Inscripcion>().HasQueryFilter(p => !p.IsDeleted);
-
         }
-
     }
 }

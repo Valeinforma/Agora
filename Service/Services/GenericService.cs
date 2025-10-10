@@ -28,15 +28,14 @@ namespace Service.Services
         }
         public async Task<T?> AddAsync(T? entity)
         {
-            var response = await _httpClient.PostAsJsonAsync(_endpoint,entity);
+            var response = await _httpClient.PostAsJsonAsync(_endpoint, entity);
             var content = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception($"Error al agregar el registro: {response.StatusCode} - {content}");
+                throw new Exception($"Error al agregar el dato: {response.StatusCode} - {content}");
             }
             return JsonSerializer.Deserialize<T>(content, _options);
         }
-
         public async Task<bool> DeleteAsync(int id)
         {
             var response = await _httpClient.DeleteAsync($"{_endpoint}/{id}");

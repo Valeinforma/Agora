@@ -1,18 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
+ ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:vm="clr-namespace:MovilApp.ViewModels.Capacitaciones"
-             x:Class="MovilApp.Views.CapacitacionesView"
-             Title="CapacitacionesView">
+             xmlns:vm="clr-namespace:MovilApp.ViewModels.Capacitaciones"
+             x:Class="MovilApp.Views.CapacitacionesView">
     <ContentPage.BindingContext>
-        <vm:CapacitacionesViewModel/>
+        <vm:CapacitacionesViewModel />
     </ContentPage.BindingContext>
-
     <ScrollView Padding="20">
         <StackLayout Spacing="20">
 
             <!-- Encabezado -->
-            <Frame BackgroundColor="Blue" 
+            <Frame BackgroundColor="LightCoral" 
                    Padding="20" 
                    CornerRadius="15" 
                    HasShadow="True">
@@ -36,7 +34,7 @@
                    HasShadow="True"
                    BorderColor="LightGray">
                 <StackLayout Spacing="15">
-                    <Label Text="¿Qué Capación estas buscando?" 
+                    <Label Text="¿Qué capacitación estás buscando?" 
                            FontSize="16"
                            FontAttributes="Bold"
                            TextColor="DarkSlateGray"/>
@@ -63,7 +61,6 @@
                         CornerRadius="8"
                         FontSize="14"/>
 
-
                     <!-- Indicador de carga -->
                     <StackLayout IsVisible="{Binding EstaDescargando}" 
                                 Orientation="Horizontal" 
@@ -71,7 +68,7 @@
                                 Spacing="10">
                         <ActivityIndicator IsRunning="{Binding EstaDescargando}"
                                           Color="DodgerBlue"/>
-                        <Label Text="Buscando capacitacónes..." 
+                        <Label Text="Buscando capacitaciones..." 
                                TextColor="DodgerBlue"
                                VerticalOptions="Center"
                                FontSize="14"/>
@@ -93,7 +90,7 @@
                                FontAttributes="Bold"
                                TextColor="DarkGreen"
                                HorizontalOptions="Center"/>
-                        <Label Text="{Binding Capacitaciones.Count, StringFormat='{0} capacitaciónes encontradas'}"
+                        <Label Text="{Binding Capacitaciones.Count, StringFormat='{0} capacitaciones encontradas'}"
                                FontSize="14"
                                TextColor="DarkGreen"
                                HorizontalOptions="Center"/>
@@ -164,6 +161,7 @@
                                     </StackLayout>
 
 
+
                                     <!-- Botón de acción -->
                                     <Button Grid.Column="2" Grid.Row="0" Grid.RowSpan="4"
                                             Text="📖&#x0a;Ver"
@@ -181,7 +179,9 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+
             </StackLayout>
+
         </StackLayout>
     </ScrollView>
 </ContentPage>

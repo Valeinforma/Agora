@@ -10,7 +10,7 @@ namespace Service.Models
     public class Inscripcion
     {
         public int Id { get; set; }
-        public int usuarioId { get; set; }
+        public int UsuarioId { get; set; }
         public Usuario? Usuario { get; set; }
         public TipoInscripcion? TipoInscripcion { get; set; }
         public int TipoInscripcionId { get; set; }

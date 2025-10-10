@@ -1,5 +1,4 @@
-﻿
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MovilApp.Views;
 using System;
@@ -20,8 +19,9 @@ namespace MovilApp.ViewModels
         public AgoraShellViewModel()
         {
             LogoutCommand = new RelayCommand(OnLogout);
-            SetLoginState(false);
+            SetLoginState(false); // Inicialmente no está logueado
         }
+
         public void SetLoginState(bool isLoggedIn)
         {
             if (Application.Current?.MainPage is AgoraShell shell)
@@ -33,16 +33,16 @@ namespace MovilApp.ViewModels
 
                 UserIsLogged = isLoggedIn;
                 if (isLoggedIn)
-                    shell.GoToAsync("//MainPage");  // Cambio a MainPage (pantalla de inicio)
+                    shell.GoToAsync("//MainPage");
                 else
                     shell.GoToAsync("//Login");
             }
 
         }
+
         private void OnLogout()
         {
             SetLoginState(false);
-         
         }
     }
 }

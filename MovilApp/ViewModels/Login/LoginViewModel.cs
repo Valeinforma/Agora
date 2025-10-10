@@ -3,6 +3,8 @@ using CommunityToolkit.Mvvm.Input;
 using Firebase.Auth;
 using Firebase.Auth.Providers;
 using Firebase.Auth.Repository;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Maui.Storage;
 using MovilApp.Views;
 
 namespace MovilApp.ViewModels.Login
@@ -26,7 +28,7 @@ namespace MovilApp.ViewModels.Login
         private bool recordarContraseña;
 
         [ObservableProperty]
-       private bool estaDescargando;
+        private bool estaDescargando;
 
 
         public IRelayCommand IniciarSesionCommand { get; }
@@ -60,8 +62,8 @@ namespace MovilApp.ViewModels.Login
 
         private async void ChequearSiHayUsuarioAlmacenado()
         {
-            /*_userRepository.DeleteUser(); */// borrar esta linea despues de las pruebas
-            //if la aplicacion se ejecuta en android o ios chequea su hay un usuario almacenado
+            //_userRepository.DeleteUser(); // Por temas de testing
+            //if la aplicación se ejecuta en android o ios chequea si hay un usuario almacenado
             if (DeviceInfo.Platform == DevicePlatform.Android || DeviceInfo.Platform == DevicePlatform.iOS)
             {
                 try
@@ -82,20 +84,12 @@ namespace MovilApp.ViewModels.Login
                 }
             }
 
-            if (_userRepository.UserExists())
-            {
-                (_userInfo, _firebaseCredential) = _userRepository.ReadUser();
 
-                if (Application.Current?.MainPage is AgoraShell shell)
-                {
-                    shell.SetLoginState(true);
-                }
-            }
         }
 
         private bool PermitirIniciarSesion()
         {
-            return !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password);
+            return !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password);
         }
 
         private async void IniciarSesion()
@@ -106,7 +100,7 @@ namespace MovilApp.ViewModels.Login
                 var userCredential = await _clientAuth.SignInWithEmailAndPasswordAsync(email, password);
                 if (userCredential.User.Info.IsEmailVerified == false)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Inicios de sesión", "Debe verificar su correo electrónico", "Ok");
+                    await Application.Current.MainPage.DisplayAlert("Inicio de sesión", "Debe verificar su correo electrónico", "Ok");
                     EstaDescargando = false;
                     return;
                 }
@@ -120,11 +114,9 @@ namespace MovilApp.ViewModels.Login
                     _userRepository.DeleteUser();
                 }
 
-
                 if (Application.Current?.MainPage is AgoraShell shell)
                 {
                     shell.SetLoginState(true);
-                    
                 }
                 EstaDescargando = false;
 

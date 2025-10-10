@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MovilApp.ViewModels.Capacitaciones
 {
-    partial class CapacitacionesViewModel: ObservableObject
+    partial class CapacitacionesViewModel : ObservableObject
     {
         GenericService<Capacitacion> _capacitacionService = new();
 
@@ -24,11 +24,9 @@ namespace MovilApp.ViewModels.Capacitaciones
         [ObservableProperty]
         private ObservableCollection<Capacitacion> capacitaciones = new();
 
-      
-
         public IRelayCommand BuscarCommand { get; }
         public IRelayCommand LimpiarCommand { get; }
- 
+
 
         public CapacitacionesViewModel()
         {
@@ -42,9 +40,6 @@ namespace MovilApp.ViewModels.Capacitaciones
             OnBuscar();
         }
 
-       
-
-        
 
         private async void OnBuscar()
         {
@@ -54,7 +49,7 @@ namespace MovilApp.ViewModels.Capacitaciones
             {
                 EstaDescargando = true;
 
-
+                // Obtener todos los libros si no los tenemos
                 var capacitaciones = await _capacitacionService.GetAllAsync(TextoBusqueda);
 
                 Capacitaciones = capacitaciones != null ?
@@ -76,6 +71,6 @@ namespace MovilApp.ViewModels.Capacitaciones
             OnBuscar();
         }
 
-       
+
     }
 }
