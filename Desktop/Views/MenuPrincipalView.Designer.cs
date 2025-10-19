@@ -32,11 +32,11 @@
             SubMenuPrincipal = new ToolStripMenuItem();
             SubMenuUsuarios = new ToolStripMenuItem();
             SubMenuCapacitaciones = new ToolStripMenuItem();
+            SubMenuTipoInscripciones = new ToolStripMenuItem();
+            inscripcionesToolStripMenuItem = new ToolStripMenuItem();
             SubMenuSalir = new ToolStripMenuItem();
             SubMenuSalirDelSistema = new ToolStripMenuItem();
             toolStrip1 = new ToolStrip();
-            SubMenuTipoInscripciones = new ToolStripMenuItem();
-            inscripcionesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -68,7 +68,20 @@
             SubMenuCapacitaciones.Name = "SubMenuCapacitaciones";
             SubMenuCapacitaciones.Size = new Size(185, 22);
             SubMenuCapacitaciones.Text = "Capacitaciones";
-            SubMenuCapacitaciones.Click += SubMenuCapacitaciones_Click;
+            // 
+            // SubMenuTipoInscripciones
+            // 
+            SubMenuTipoInscripciones.Name = "SubMenuTipoInscripciones";
+            SubMenuTipoInscripciones.Size = new Size(185, 22);
+            SubMenuTipoInscripciones.Text = "Tipo de Inscripciones";
+            SubMenuTipoInscripciones.Click += SubMenuTipoInscripciones_Click;
+            // 
+            // inscripcionesToolStripMenuItem
+            // 
+            inscripcionesToolStripMenuItem.Name = "inscripcionesToolStripMenuItem";
+            inscripcionesToolStripMenuItem.Size = new Size(185, 22);
+            inscripcionesToolStripMenuItem.Text = "Inscripciones";
+            inscripcionesToolStripMenuItem.Click += inscripcionesToolStripMenuItem_Click;
             // 
             // SubMenuSalir
             // 
@@ -91,19 +104,6 @@
             toolStrip1.Size = new Size(800, 25);
             toolStrip1.TabIndex = 2;
             toolStrip1.Text = "toolStrip1";
-            // 
-            // SubMenuTipoInscripciones
-            // 
-            SubMenuTipoInscripciones.Name = "SubMenuTipoInscripciones";
-            SubMenuTipoInscripciones.Size = new Size(185, 22);
-            SubMenuTipoInscripciones.Text = "Tipo de Inscripciones";
-            SubMenuTipoInscripciones.Click += tipoInscripcionesToolStripMenuItem_Click;
-            // 
-            // inscripcionesToolStripMenuItem
-            // 
-            inscripcionesToolStripMenuItem.Name = "inscripcionesToolStripMenuItem";
-            inscripcionesToolStripMenuItem.Size = new Size(185, 22);
-            inscripcionesToolStripMenuItem.Text = "Inscripciones";
             // 
             // MenuPrincipalView
             // 

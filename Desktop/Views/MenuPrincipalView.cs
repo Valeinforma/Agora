@@ -21,6 +21,20 @@ namespace Desktop.Views
             usuariosView.Show();
         }
 
-     
+        private void SubMenuTipoInscripciones_Click(object sender, EventArgs e)
+        {
+            var tipoInscripcionView = new TipoInscripcionView();
+            tipoInscripcionView.MdiParent = this;
+            tipoInscripcionView.Show();
+
+        }
+
+        private void inscripcionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var inscripcionesView = new InscripcionesView();
+            inscripcionesView.MdiParent = this;
+            inscripcionesView.Show();   
+
+        }
     }
 }
