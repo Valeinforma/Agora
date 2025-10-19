@@ -25,7 +25,21 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Inscripcion>>> GetInscripciones()
         {
-            return await _context.Inscripciones.ToListAsync();
+            return await _context.Inscripciones
+                        .Include(i => i.Capacitacion)
+                        .Include(i => i.TipoInscripcion)
+                        .Include(i => i.Usuario).ToListAsync();
+        }
+
+        [HttpGet("inscriptos/{id}")]
+        public async Task<ActionResult<IEnumerable<Inscripcion>>> GetInscriptos(int id)
+        {
+            return await _context.Inscripciones
+                        .Include(i => i.Capacitacion)
+                        .Include(i => i.TipoInscripcion)
+                        .Include(i => i.Usuario)
+                        .Where(i => i.CapacitacionId == id)
+                        .ToListAsync();
         }
 
         // GET: api/Inscripciones/5
@@ -93,41 +107,43 @@ namespace Backend.Controllers
             {
                 return NotFound();
             }
-            inscripcion.IsDeleted = true;
+            inscripcion.IsDeleted = true; // Soft delete
             _context.Inscripciones.Update(inscripcion);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-
-        [HttpPut("restore/{id}")]
-        public async Task<IActionResult> RestoreCapacitacion(int id)
-        {
-            var capacitacion = await _context.Capacitaciones.IgnoreQueryFilters
-                ().FirstOrDefaultAsync(c => c.Id.Equals(id));
-            if (capacitacion == null)
-            {
-                return NotFound();
-            }
-            capacitacion.IsDeleted = false;
-            _context.Capacitaciones.Update(capacitacion);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-
-        // GET: api/Capacitaciones
-        [HttpGet("deleteds/")]
-        public async Task<ActionResult<IEnumerable<Capacitacion>>> GetCapacitacionesDeleteds()
-        {
-            return await _context.Capacitaciones.IgnoreQueryFilters().Where(c => c.IsDeleted).ToListAsync();
-        }
-
         private bool InscripcionExists(int id)
         {
             return _context.Inscripciones.Any(e => e.Id == id);
         }
+
+        // PUT: api/Inscripciones/restore/5
+        [HttpPut("restore/{id}")]
+        public async Task<IActionResult> RestoreInscripcion(int id)
+        {
+            var inscripcion = await _context.Inscripciones.IgnoreQueryFilters().FirstOrDefaultAsync(i => i.Equals(id));
+            if (inscripcion == null)
+            {
+                return NotFound();
+            }
+            inscripcion.IsDeleted = false; // Restore the soft-deleted record
+            _context.Inscripciones.Update(inscripcion);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        // Get : api/Inscripciones/deleteds/
+        [HttpGet("deleteds")]
+        public async Task<ActionResult<IEnumerable<Inscripcion>>> GetDeletedInscripciones()
+        {
+            return await _context.Inscripciones.IgnoreQueryFilters().Where(i => i.IsDeleted).ToListAsync();
+        }
+
+
+
+
+
     }
 }

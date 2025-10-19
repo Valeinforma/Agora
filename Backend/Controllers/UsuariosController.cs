@@ -94,7 +94,7 @@ namespace Backend.Controllers
                 return NotFound();
             }
             usuario.IsDeleted = true;
-            usuario.DeleteTime = DateTime.UtcNow;
+            usuario.DeleteDate = DateTime.UtcNow;
             _context.Usuarios.Update(usuario);
             await _context.SaveChangesAsync();
 

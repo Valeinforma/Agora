@@ -13,7 +13,7 @@ namespace Service.Services
 {
     public class GenericService<T> : IGenericService<T> where T : class
     {
-        private readonly HttpClient _httpClient;
+        protected readonly HttpClient _httpClient;
         protected readonly JsonSerializerOptions _options;
         protected readonly string _endpoint;
         public GenericService()

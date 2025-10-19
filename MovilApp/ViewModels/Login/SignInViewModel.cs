@@ -101,9 +101,9 @@ namespace MovilApp.ViewModels.Login
                         Nombre = name,
                         Dni = dni,
                         Email = email,
-                        TipoUsuarioEnum = TipoUsuarioEnum.Asistente,
+                        TipoUsuario = TipoUsuarioEnum.Asistente,
                         IsDeleted = false,
-                        DeleteTime = DateTime.Parse("1900-01-01")
+                        DeleteDate = DateTime.Parse("1900-01-01")
                     };
                     var usuarioCreado = await _usuarioService.AddAsync(nuevoUsuario);
                     await SendVerificationEmailAsync(user.User.GetIdTokenAsync().Result);
