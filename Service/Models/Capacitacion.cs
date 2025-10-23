@@ -11,7 +11,7 @@ namespace Service.Models
         public int Id { get; set; }
         public string Nombre { get; set; } = string.Empty;
         public string Detalle { get; set; } = string.Empty;
-        public DateTime FechaHora { get; set; }
+        public DateTime FechaHora { get; set; } = DateTime.Now;
         public DateTime DeleteTime { get; set; }
         public string Ponente { get; set; } = string.Empty;
         public bool InscripcionAbierta { get; set; } = true; // Si la inscripción está abierta o no

@@ -1,6 +1,8 @@
 ﻿@page "/capacitaciones"
 
 @inject IGenericService<Capacitacion> _serviceCapacitacion
+@inject NavigationManager NavigationManager
+@inject FirebaseAuthService _authService
 @inject SweetAlertService sweetAlert
 <PageTitle>Capacitaciones</PageTitle>
 
@@ -16,7 +18,7 @@ else if (!capacitaciones.Any())
 }
 else
 {
-	<NavLink class="btn btn-info" href=@($"NuevoEditarCapacitacion")>
+	<NavLink class="btn btn-primary" href=@($"NuevoEditarCapacitacion")>
 		Agregar capcitacion
 	</NavLink>
 	<table class="table">
@@ -45,7 +47,7 @@ else
 					</td>
 
 					<td>
-						<NavLink class="btn btn-info" href=@($"NuevoEditarCapacitacion?idCapacitacion={cap.Id}")>
+						<NavLink class="btn btn-primary" href=@($"NuevoEditarCapacitacion?idCapacitacion={cap.Id}")>
 							Editar
 						</NavLink>
 					</td>
@@ -60,6 +62,12 @@ else
 
 	protected override async Task OnInitializedAsync()
 	{
+		if (!await _authService.IsUserAuthenticated())
+		{
+			NavigationManager.NavigateTo("/login");
+			return;
+		}
+
 		capacitaciones = (await _serviceCapacitacion.GetAllAsync(null))?.ToList();
 	}
 

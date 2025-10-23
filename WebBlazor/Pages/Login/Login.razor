@@ -48,33 +48,23 @@
         </div>
     </div>
 }
-else
-{
-    <div class="card text-center">
-        <div class="card-header">
-            Cerrar sesión de Àgora
-        </div>
-        <div class="card-body">
-            <p class="card-header">Cerrar sesión de Àgora</p>
 
-            <button class="btn btn-primary" @onclick="Desloguear">Cerrar sesión</button>
-        </div>
-        <div class="card-footer text-body-secondary">
-            Desarrollo 2do año - TSDS - 2025
-        </div>
-    </div>
-}
 @code 
 {
     bool isAuthenticated = false;
     private string email = string.Empty;
     private string password = string.Empty;
-	bool rememberPassword = false;
+    bool rememberPassword = false;
 
 
     protected override async Task OnInitializedAsync()
     {
         isAuthenticated = await _firebaseAuthService.IsUserAuthenticated();
+        if (isAuthenticated)
+        {
+			_navigation.NavigateTo("/perfilusuario");
+        }
+
 	}
 
 
@@ -120,7 +110,7 @@ else
         if (user != null)
         {
             isAuthenticated = true;
-            StateHasChanged();
+            _navigation.NavigateTo("/perfilusuario");
         }
         else
         {
