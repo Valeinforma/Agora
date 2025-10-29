@@ -83,6 +83,20 @@ namespace Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
+
+
+            //controlamis que el Email no exista ya tampoco que exista el DNI
+            if (_context.Usuarios.IgnoreQueryFilters().Any(u => u.Email == usuario.Email))
+            {
+                return Conflict("El email ya está en uso.");
+            }
+            if  (_context.Usuarios.Any(u => u.Dni.Trim().Replace(".", "") == usuario.Dni.Trim().Replace(".", "")))
+            {
+                return Conflict("El DNI ya está en uso.");
+            }
+
+
+
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
 
@@ -108,27 +122,27 @@ namespace Backend.Controllers
 
 
         [HttpPut("restore/{id}")]
-        public async Task<IActionResult> RestoreCapacitacion(int id)
+        public async Task<IActionResult> RestoreUsuario(int id)
         {
-            var capacitacion = await _context.Capacitaciones.IgnoreQueryFilters
-                ().FirstOrDefaultAsync(c => c.Id.Equals(id));
-            if (capacitacion == null)
+            var Usuario = await _context.Usuarios.IgnoreQueryFilters
+                ().FirstOrDefaultAsync(u => u.Id.Equals(id));
+            if (Usuario == null)
             {
                 return NotFound();
             }
-            capacitacion.IsDeleted = false;
-            _context.Capacitaciones.Update(capacitacion);
+            Usuario.IsDeleted = false;
+            _context.Usuarios.Update(Usuario);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
 
-        // GET: api/Capacitaciones
+        // GET: api/Usuarios
         [HttpGet("deleteds/")]
-        public async Task<ActionResult<IEnumerable<Capacitacion>>> GetCapacitacionesDeleteds()
+        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuariosDeleteds()
         {
-            return await _context.Capacitaciones.IgnoreQueryFilters().Where(c => c.IsDeleted).ToListAsync();
+            return await _context.Usuarios.IgnoreQueryFilters().Where(c => c.IsDeleted).ToListAsync();
         }
 
         private bool UsuarioExists(int id)

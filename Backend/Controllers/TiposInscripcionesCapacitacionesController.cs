@@ -100,34 +100,32 @@ namespace Backend.Controllers
             return NoContent();
         }
 
-
-        [HttpPut("restore/{id}")]
-        public async Task<IActionResult> RestoreCapacitacion(int id)
-        {
-            var capacitacion = await _context.Capacitaciones.IgnoreQueryFilters
-                ().FirstOrDefaultAsync(c => c.Id.Equals(id));
-            if (capacitacion == null)
-            {
-                return NotFound();
-            }
-            capacitacion.IsDeleted = false;
-            _context.Capacitaciones.Update(capacitacion);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-
-        // GET: api/Capacitaciones
-        [HttpGet("deleteds/")]
-        public async Task<ActionResult<IEnumerable<Capacitacion>>> GetCapacitacionesDeleteds()
-        {
-            return await _context.Capacitaciones.IgnoreQueryFilters().Where(c => c.IsDeleted).ToListAsync();
-        }
-
         private bool TipoInscripcionCapacitacionExists(int id)
         {
             return _context.TiposInscripcionesCapacitaciones.Any(e => e.Id == id);
+        }
+
+        // GET: api/TiposInscripcionesCapacitaciones/deleteds
+        [HttpGet("deleteds/")]
+        public async Task<ActionResult<IEnumerable<TipoInscripcionCapacitacion>>> GetTiposInscripcionesCapacitacionesDeleteds()
+        {
+            return await _context.TiposInscripcionesCapacitaciones.IgnoreQueryFilters().Where(t => t.IsDeleted).ToListAsync();
+        }
+
+        // PUT: api/TiposInscripcionesCapacitaciones/restore/5
+        [HttpPut("restore/{id}")]
+        public async Task<IActionResult> RestoreTipoInscripcionCapacitacion(int id)
+        {
+            var tipoInscripcionCapacitacion = await _context.TiposInscripcionesCapacitaciones.IgnoreQueryFilters().FirstOrDefaultAsync(t => t.Id == id);
+            if (tipoInscripcionCapacitacion == null)
+            {
+                return NotFound();
+            }
+            tipoInscripcionCapacitacion.IsDeleted = false;
+            _context.TiposInscripcionesCapacitaciones.Update(tipoInscripcionCapacitacion);
+            await _context.SaveChangesAsync();
+            return NoContent();
+
         }
     }
 }
