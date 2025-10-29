@@ -1,22 +1,40 @@
-﻿using System.Data;
+﻿using Firebase.Auth;
+using Firebase.Auth.Providers;
 using Service.Enums;
 using Service.Models;
 using Service.Services;
+using System.Data;
 
 namespace Desktop.Views
 {
     public partial class UsuariosView : Form
     {
         GenericService<Usuario> _UsuarioService = new();
-        
+
         Usuario _currentUsuario;
         List<Usuario>? _usuario;
+        FirebaseAuthClient _firebaseAuthClient;
 
         public UsuariosView()
         {
             InitializeComponent();
             _ = GetAllData();
+            SettingFirebase();
             checkVerEliminados.CheckedChanged += DisplayHideControlsRestoreButton;
+
+        }
+        private void SettingFirebase()
+        {
+            var config = new FirebaseAuthConfig()
+            {
+                ApiKey = Service.Properties.Resources.ApiKeyFirebase,
+                AuthDomain = Service.Properties.Resources.AuthDomainFirebase,
+                Providers = new FirebaseAuthProvider[]
+               {
+                    new EmailProvider()
+               }
+            };
+            _firebaseAuthClient = new FirebaseAuthClient(config);
         }
 
         private void DisplayHideControlsRestoreButton(object? sender, EventArgs e)
@@ -39,14 +57,15 @@ namespace Desktop.Views
             DataGrid.DataSource = _usuario;
             DataGrid.Columns["Id"].Visible = false; // Ocultar la columna Pais
             DataGrid.Columns["IsDeleted"].Visible = false; // Ocultar la columna Eliminado
+            DataGrid.Columns["DeleteDate"].Visible = false; // Ocultar la columna Fecha de Eliminación
             await GetComboTiposDeUsuaio();
 
         }
 
         private async Task GetComboTiposDeUsuaio()
         {
-            
-
+            //Cargo el combo de tipos con el enum TipoUsuario
+            ComboTipoUsuario.DataSource = Enum.GetValues(typeof(TipoUsuarioEnum));
         }
 
         private void GridPeliculas_SelectionChanged_1(object sender, EventArgs e)
@@ -123,7 +142,7 @@ namespace Desktop.Views
                 Apellido = TxtApellido.Text,
                 Dni = TxtDni.Text,
                 Email = TxtEmail.Text,
-                TipoUsuario = (TipoUsuarioEnum)(ComboTiposUsuario.SelectedItem?? TipoUsuarioEnum.Asistente)
+                TipoUsuario = (TipoUsuarioEnum)(ComboTipoUsuario.SelectedItem ?? TipoUsuarioEnum.Asistente)
                 //operador de coalescencia nula por si no se selecciona nada en el combo, asigna Asistente por defecto
 
 
@@ -163,7 +182,7 @@ namespace Desktop.Views
                 TxtApellido.Text = _currentUsuario.Apellido;
                 TxtDni.Text = _currentUsuario.Dni;
                 TxtEmail.Text = _currentUsuario.Email;
-                ComboTiposUsuario.SelectedItem = _currentUsuario.TipoUsuario;
+                ComboTipoUsuario.SelectedItem = _currentUsuario.TipoUsuario;
 
 
 
@@ -225,7 +244,9 @@ namespace Desktop.Views
             }
         }
 
+        private void TabPageAgregarEditar_Click(object sender, EventArgs e)
+        {
 
-       
+        }
     }
 }
