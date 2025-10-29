@@ -25,10 +25,13 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Capacitacion>>> GetCapacitaciones([FromQuery]string? filter="")
         {
-           
-                return await _context.Capacitaciones.Where(c=>c.Nombre.Contains(filter) ||
-                c.Detalle.Contains(filter) || c.Ponente.Contains(filter)).ToListAsync();
-        }
+
+                            return await _context.Capacitaciones
+                .Where(c => c.Nombre.Contains(filter, StringComparison.OrdinalIgnoreCase)
+                        || c.Detalle.Contains(filter, StringComparison.OrdinalIgnoreCase)
+                        || c.Ponente.Contains(filter, StringComparison.OrdinalIgnoreCase))
+                .ToListAsync();
+                        }
         [HttpGet("abiertas")]
         public async Task<ActionResult<IEnumerable<Capacitacion>>> GetCapacitacionesAbiertas([FromQuery]string? filter="")
         {
