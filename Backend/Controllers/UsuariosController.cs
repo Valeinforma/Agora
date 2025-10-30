@@ -26,7 +26,7 @@ namespace Backend.Controllers
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios([FromQuery] string? filter = "")
         {
                             return await _context.Usuarios
-                 .Where(u => u.Nombre.Contains(filter, StringComparison.OrdinalIgnoreCase)
+                 .AsNoTracking().Where(u => u.Nombre.Contains(filter, StringComparison.OrdinalIgnoreCase)
                          || u.Apellido.Contains(filter, StringComparison.OrdinalIgnoreCase)
                          || u.Dni.Contains(filter, StringComparison.OrdinalIgnoreCase)
                          || u.Email.Contains(filter, StringComparison.OrdinalIgnoreCase))

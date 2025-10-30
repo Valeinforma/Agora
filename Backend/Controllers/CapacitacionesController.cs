@@ -27,7 +27,7 @@ namespace Backend.Controllers
         {
 
                             return await _context.Capacitaciones
-                .Where(c => c.Nombre.Contains(filter, StringComparison.OrdinalIgnoreCase)
+                .AsNoTracking().Include(c=>c.TiposDeInscripciones).Where(c => c.Nombre.Contains(filter, StringComparison.OrdinalIgnoreCase)
                         || c.Detalle.Contains(filter, StringComparison.OrdinalIgnoreCase)
                         || c.Ponente.Contains(filter, StringComparison.OrdinalIgnoreCase))
                 .ToListAsync();
@@ -36,15 +36,24 @@ namespace Backend.Controllers
         public async Task<ActionResult<IEnumerable<Capacitacion>>> GetCapacitacionesAbiertas([FromQuery]string? filter="")
         {
            
-                return await _context.Capacitaciones.Where(c=> c.InscripcionAbierta && (c.Nombre.Contains(filter) ||
-                c.Detalle.Contains(filter) || c.Ponente.Contains(filter))).ToListAsync();
+                return await _context.Capacitaciones.
+                AsNoTracking().Include(c => c.TiposDeInscripciones).
+                Where(c=> 
+                c.InscripcionAbierta && 
+                (c.Nombre.Contains(filter) ||
+                c.Detalle.Contains(filter) ||
+                c.Ponente.Contains(filter))).ToListAsync();
         }
         [HttpGet("futuras")]
         public async Task<ActionResult<IEnumerable<Capacitacion>>> GetCapacitacionesFuturas([FromQuery]string? filter="")
         {
            
-                return await _context.Capacitaciones.Where(c=> !c.InscripcionAbierta&& c.FechaHora.Date>DateTime.Now.Date && (c.Nombre.Contains(filter) ||
-                c.Detalle.Contains(filter) || c.Ponente.Contains(filter))).ToListAsync();
+                return await _context.Capacitaciones.AsNoTracking().Include(c => c.TiposDeInscripciones).Where(c=>
+                !c.InscripcionAbierta&& 
+                c.FechaHora.Date>DateTime.Now.Date && 
+                (c.Nombre.Contains(filter) ||
+                c.Detalle.Contains(filter) || 
+                c.Ponente.Contains(filter))).ToListAsync();
         }
 
        
@@ -142,7 +151,7 @@ namespace Backend.Controllers
         [HttpGet("deleteds/")]
         public async Task<ActionResult<IEnumerable<Capacitacion>>> GetCapacitacionesDeleteds()
         {
-            return await _context.Capacitaciones.IgnoreQueryFilters().Where(c=>c.IsDeleted).ToListAsync();
+            return await _context.Capacitaciones.AsNoTracking().Include(c => c.TiposDeInscripciones).IgnoreQueryFilters().Where(c=>c.IsDeleted).ToListAsync();
         }
 
 
