@@ -27,7 +27,7 @@ namespace Backend.Controllers
         {
 
                             return await _context.Capacitaciones
-                .AsNoTracking().Include(c=>c.TiposDeInscripciones).Where(c => c.Nombre.Contains(filter, StringComparison.OrdinalIgnoreCase)
+                .AsNoTracking().Include(c=>c.TiposDeInscripciones).ThenInclude(t=> t.TipoInscripcion).Where(c => c.Nombre.Contains(filter, StringComparison.OrdinalIgnoreCase)
                         || c.Detalle.Contains(filter, StringComparison.OrdinalIgnoreCase)
                         || c.Ponente.Contains(filter, StringComparison.OrdinalIgnoreCase))
                 .ToListAsync();
@@ -37,7 +37,7 @@ namespace Backend.Controllers
         {
            
                 return await _context.Capacitaciones.
-                AsNoTracking().Include(c => c.TiposDeInscripciones).
+                AsNoTracking().Include(c => c.TiposDeInscripciones).ThenInclude(t => t.TipoInscripcion).
                 Where(c=> 
                 c.InscripcionAbierta && 
                 (c.Nombre.Contains(filter) ||
@@ -48,7 +48,7 @@ namespace Backend.Controllers
         public async Task<ActionResult<IEnumerable<Capacitacion>>> GetCapacitacionesFuturas([FromQuery]string? filter="")
         {
            
-                return await _context.Capacitaciones.AsNoTracking().Include(c => c.TiposDeInscripciones).Where(c=>
+                return await _context.Capacitaciones.AsNoTracking().Include(c => c.TiposDeInscripciones).ThenInclude(t => t.TipoInscripcion).Where(c=>
                 !c.InscripcionAbierta&& 
                 c.FechaHora.Date>DateTime.Now.Date && 
                 (c.Nombre.Contains(filter) ||
