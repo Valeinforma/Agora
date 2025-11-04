@@ -42,11 +42,11 @@
             BtnAgregar = new FontAwesome.Sharp.IconButton();
             BtnModificar = new FontAwesome.Sharp.IconButton();
             TabPageAgregarEditar = new TabPage();
+            ComboTiposInscripciones = new ComboBox();
             BtnQuitar = new FontAwesome.Sharp.IconButton();
             BtnAniadir = new FontAwesome.Sharp.IconButton();
             label9 = new Label();
             numericCosto = new NumericUpDown();
-            ComboTiposInscripciones = new ComboBox();
             label8 = new Label();
             GridTiposDeInscripciones = new DataGridView();
             checkInscripcionAbierta = new CheckBox();
@@ -84,7 +84,7 @@
             TabControl.Controls.Add(TabPageLista);
             TabControl.Controls.Add(TabPageAgregarEditar);
             TabControl.Location = new Point(15, 50);
-            TabControl.Margin = new Padding(2, 2, 2, 2);
+            TabControl.Margin = new Padding(2);
             TabControl.Name = "TabControl";
             TabControl.SelectedIndex = 0;
             TabControl.Size = new Size(933, 363);
@@ -103,10 +103,10 @@
             TabPageLista.Controls.Add(BtnAgregar);
             TabPageLista.Controls.Add(BtnModificar);
             TabPageLista.Location = new Point(4, 24);
-            TabPageLista.Margin = new Padding(2, 2, 2, 2);
+            TabPageLista.Margin = new Padding(2);
             TabPageLista.Name = "TabPageLista";
-            TabPageLista.Padding = new Padding(2, 2, 2, 2);
-            TabPageLista.Size = new Size(968, 335);
+            TabPageLista.Padding = new Padding(2);
+            TabPageLista.Size = new Size(925, 335);
             TabPageLista.TabIndex = 1;
             TabPageLista.Text = "Lista";
             TabPageLista.UseVisualStyleBackColor = true;
@@ -119,7 +119,7 @@
             BtnRestaurar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnRestaurar.ImageAlign = ContentAlignment.MiddleLeft;
             BtnRestaurar.Location = new Point(867, 155);
-            BtnRestaurar.Margin = new Padding(2, 2, 2, 2);
+            BtnRestaurar.Margin = new Padding(2);
             BtnRestaurar.Name = "BtnRestaurar";
             BtnRestaurar.Size = new Size(95, 32);
             BtnRestaurar.TabIndex = 6;
@@ -133,7 +133,7 @@
             // 
             checkVerEliminados.AutoSize = true;
             checkVerEliminados.Location = new Point(618, 16);
-            checkVerEliminados.Margin = new Padding(2, 2, 2, 2);
+            checkVerEliminados.Margin = new Padding(2);
             checkVerEliminados.Name = "checkVerEliminados";
             checkVerEliminados.Size = new Size(103, 19);
             checkVerEliminados.TabIndex = 1;
@@ -149,7 +149,7 @@
             BtnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnBuscar.ImageAlign = ContentAlignment.MiddleLeft;
             BtnBuscar.Location = new Point(867, 5);
-            BtnBuscar.Margin = new Padding(2, 2, 2, 2);
+            BtnBuscar.Margin = new Padding(2);
             BtnBuscar.Name = "BtnBuscar";
             BtnBuscar.Size = new Size(95, 32);
             BtnBuscar.TabIndex = 2;
@@ -161,7 +161,7 @@
             // TxtBuscar
             // 
             TxtBuscar.Location = new Point(60, 13);
-            TxtBuscar.Margin = new Padding(2, 2, 2, 2);
+            TxtBuscar.Margin = new Padding(2);
             TxtBuscar.Name = "TxtBuscar";
             TxtBuscar.Size = new Size(546, 23);
             TxtBuscar.TabIndex = 0;
@@ -185,7 +185,7 @@
             BtnSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnSalir.ImageAlign = ContentAlignment.MiddleLeft;
             BtnSalir.Location = new Point(867, 229);
-            BtnSalir.Margin = new Padding(2, 2, 2, 2);
+            BtnSalir.Margin = new Padding(2);
             BtnSalir.Name = "BtnSalir";
             BtnSalir.Size = new Size(95, 31);
             BtnSalir.TabIndex = 7;
@@ -202,7 +202,7 @@
             DataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGrid.Location = new Point(4, 37);
-            DataGrid.Margin = new Padding(2, 2, 2, 2);
+            DataGrid.Margin = new Padding(2);
             DataGrid.MultiSelect = false;
             DataGrid.Name = "DataGrid";
             DataGrid.ReadOnly = true;
@@ -220,7 +220,7 @@
             BtnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnEliminar.ImageAlign = ContentAlignment.MiddleLeft;
             BtnEliminar.Location = new Point(867, 120);
-            BtnEliminar.Margin = new Padding(2, 2, 2, 2);
+            BtnEliminar.Margin = new Padding(2);
             BtnEliminar.Name = "BtnEliminar";
             BtnEliminar.Size = new Size(95, 32);
             BtnEliminar.TabIndex = 5;
@@ -237,7 +237,7 @@
             BtnAgregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnAgregar.ImageAlign = ContentAlignment.MiddleLeft;
             BtnAgregar.Location = new Point(867, 50);
-            BtnAgregar.Margin = new Padding(2, 2, 2, 2);
+            BtnAgregar.Margin = new Padding(2);
             BtnAgregar.Name = "BtnAgregar";
             BtnAgregar.Size = new Size(95, 32);
             BtnAgregar.TabIndex = 3;
@@ -254,7 +254,7 @@
             BtnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnModificar.ImageAlign = ContentAlignment.MiddleLeft;
             BtnModificar.Location = new Point(867, 86);
-            BtnModificar.Margin = new Padding(2, 2, 2, 2);
+            BtnModificar.Margin = new Padding(2);
             BtnModificar.Name = "BtnModificar";
             BtnModificar.Size = new Size(95, 30);
             BtnModificar.TabIndex = 4;
@@ -265,11 +265,11 @@
             // 
             // TabPageAgregarEditar
             // 
+            TabPageAgregarEditar.Controls.Add(ComboTiposInscripciones);
             TabPageAgregarEditar.Controls.Add(BtnQuitar);
             TabPageAgregarEditar.Controls.Add(BtnAniadir);
             TabPageAgregarEditar.Controls.Add(label9);
             TabPageAgregarEditar.Controls.Add(numericCosto);
-            TabPageAgregarEditar.Controls.Add(ComboTiposInscripciones);
             TabPageAgregarEditar.Controls.Add(label8);
             TabPageAgregarEditar.Controls.Add(GridTiposDeInscripciones);
             TabPageAgregarEditar.Controls.Add(checkInscripcionAbierta);
@@ -286,13 +286,21 @@
             TabPageAgregarEditar.Controls.Add(BtnCancelar);
             TabPageAgregarEditar.Controls.Add(BtnGuardar);
             TabPageAgregarEditar.Location = new Point(4, 24);
-            TabPageAgregarEditar.Margin = new Padding(2, 2, 2, 2);
+            TabPageAgregarEditar.Margin = new Padding(2);
             TabPageAgregarEditar.Name = "TabPageAgregarEditar";
-            TabPageAgregarEditar.Padding = new Padding(2, 2, 2, 2);
+            TabPageAgregarEditar.Padding = new Padding(2);
             TabPageAgregarEditar.Size = new Size(925, 335);
             TabPageAgregarEditar.TabIndex = 0;
             TabPageAgregarEditar.Text = "Agregar/Editar";
             TabPageAgregarEditar.UseVisualStyleBackColor = true;
+            // 
+            // ComboTiposInscripciones
+            // 
+            ComboTiposInscripciones.FormattingEnabled = true;
+            ComboTiposInscripciones.Location = new Point(410, 148);
+            ComboTiposInscripciones.Name = "ComboTiposInscripciones";
+            ComboTiposInscripciones.Size = new Size(213, 23);
+            ComboTiposInscripciones.TabIndex = 35;
             // 
             // BtnQuitar
             // 
@@ -302,7 +310,7 @@
             BtnQuitar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnQuitar.ImageAlign = ContentAlignment.MiddleLeft;
             BtnQuitar.Location = new Point(817, 208);
-            BtnQuitar.Margin = new Padding(2, 2, 2, 2);
+            BtnQuitar.Margin = new Padding(2);
             BtnQuitar.Name = "BtnQuitar";
             BtnQuitar.Size = new Size(95, 32);
             BtnQuitar.TabIndex = 34;
@@ -319,7 +327,7 @@
             BtnAniadir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnAniadir.ImageAlign = ContentAlignment.MiddleLeft;
             BtnAniadir.Location = new Point(817, 141);
-            BtnAniadir.Margin = new Padding(2, 2, 2, 2);
+            BtnAniadir.Margin = new Padding(2);
             BtnAniadir.Name = "BtnAniadir";
             BtnAniadir.Size = new Size(95, 32);
             BtnAniadir.TabIndex = 33;
@@ -342,26 +350,17 @@
             // 
             numericCosto.DecimalPlaces = 2;
             numericCosto.Location = new Point(697, 149);
-            numericCosto.Margin = new Padding(2, 2, 2, 2);
+            numericCosto.Margin = new Padding(2);
             numericCosto.Maximum = new decimal(new int[] { 1410065407, 2, 0, 0 });
             numericCosto.Name = "numericCosto";
             numericCosto.Size = new Size(114, 23);
             numericCosto.TabIndex = 31;
             numericCosto.TextAlign = HorizontalAlignment.Right;
             // 
-            // ComboTiposInscripciones
-            // 
-            ComboTiposInscripciones.FormattingEnabled = true;
-            ComboTiposInscripciones.Location = new Point(413, 149);
-            ComboTiposInscripciones.Margin = new Padding(2, 2, 2, 2);
-            ComboTiposInscripciones.Name = "ComboTiposInscripciones";
-            ComboTiposInscripciones.Size = new Size(215, 23);
-            ComboTiposInscripciones.TabIndex = 30;
-            // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(410, 121);
+            label8.Location = new Point(410, 127);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
             label8.Size = new Size(224, 15);
@@ -375,7 +374,7 @@
             GridTiposDeInscripciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             GridTiposDeInscripciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             GridTiposDeInscripciones.Location = new Point(410, 176);
-            GridTiposDeInscripciones.Margin = new Padding(2, 2, 2, 2);
+            GridTiposDeInscripciones.Margin = new Padding(2);
             GridTiposDeInscripciones.Name = "GridTiposDeInscripciones";
             GridTiposDeInscripciones.ReadOnly = true;
             GridTiposDeInscripciones.RowHeadersWidth = 62;
@@ -387,7 +386,7 @@
             // 
             checkInscripcionAbierta.AutoSize = true;
             checkInscripcionAbierta.Location = new Point(152, 188);
-            checkInscripcionAbierta.Margin = new Padding(2, 2, 2, 2);
+            checkInscripcionAbierta.Margin = new Padding(2);
             checkInscripcionAbierta.Name = "checkInscripcionAbierta";
             checkInscripcionAbierta.Size = new Size(123, 19);
             checkInscripcionAbierta.TabIndex = 6;
@@ -409,7 +408,7 @@
             DateTimeFechaHora.CustomFormat = "dd/MM/yyyy HH:mm";
             DateTimeFechaHora.Format = DateTimePickerFormat.Custom;
             DateTimeFechaHora.Location = new Point(152, 121);
-            DateTimeFechaHora.Margin = new Padding(2, 2, 2, 2);
+            DateTimeFechaHora.Margin = new Padding(2);
             DateTimeFechaHora.Name = "DateTimeFechaHora";
             DateTimeFechaHora.Size = new Size(211, 23);
             DateTimeFechaHora.TabIndex = 4;
@@ -417,7 +416,7 @@
             // TxtPonente
             // 
             TxtPonente.Location = new Point(152, 88);
-            TxtPonente.Margin = new Padding(2, 2, 2, 2);
+            TxtPonente.Margin = new Padding(2);
             TxtPonente.Name = "TxtPonente";
             TxtPonente.Size = new Size(792, 23);
             TxtPonente.TabIndex = 3;
@@ -445,7 +444,7 @@
             // NumericCupo
             // 
             NumericCupo.Location = new Point(152, 155);
-            NumericCupo.Margin = new Padding(2, 2, 2, 2);
+            NumericCupo.Margin = new Padding(2);
             NumericCupo.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
             NumericCupo.Name = "NumericCupo";
             NumericCupo.Size = new Size(78, 23);
@@ -455,7 +454,7 @@
             // TxtDetalle
             // 
             TxtDetalle.Location = new Point(152, 54);
-            TxtDetalle.Margin = new Padding(2, 2, 2, 2);
+            TxtDetalle.Margin = new Padding(2);
             TxtDetalle.Name = "TxtDetalle";
             TxtDetalle.Size = new Size(792, 23);
             TxtDetalle.TabIndex = 2;
@@ -473,7 +472,7 @@
             // TxtNombre
             // 
             TxtNombre.Location = new Point(152, 20);
-            TxtNombre.Margin = new Padding(2, 2, 2, 2);
+            TxtNombre.Margin = new Padding(2);
             TxtNombre.Name = "TxtNombre";
             TxtNombre.Size = new Size(792, 23);
             TxtNombre.TabIndex = 1;
@@ -496,7 +495,7 @@
             BtnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
             BtnCancelar.Location = new Point(481, 296);
-            BtnCancelar.Margin = new Padding(2, 2, 2, 2);
+            BtnCancelar.Margin = new Padding(2);
             BtnCancelar.Name = "BtnCancelar";
             BtnCancelar.Size = new Size(95, 32);
             BtnCancelar.TabIndex = 8;
@@ -513,7 +512,7 @@
             BtnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
             BtnGuardar.Location = new Point(341, 296);
-            BtnGuardar.Margin = new Padding(2, 2, 2, 2);
+            BtnGuardar.Margin = new Padding(2);
             BtnGuardar.Name = "BtnGuardar";
             BtnGuardar.Size = new Size(95, 32);
             BtnGuardar.TabIndex = 7;
@@ -528,7 +527,7 @@
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(label1);
             panel1.Location = new Point(-2, -1);
-            panel1.Margin = new Padding(2, 2, 2, 2);
+            panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
             panel1.Size = new Size(1003, 47);
             panel1.TabIndex = 7;
@@ -572,7 +571,7 @@
             Controls.Add(statusStrip1);
             Controls.Add(panel1);
             Controls.Add(TabControl);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "CapacitacionesView";
             StartPosition = FormStartPosition.CenterScreen;
             WindowState = FormWindowState.Maximized;
@@ -627,10 +626,10 @@
         private CheckBox checkInscripcionAbierta;
         private Label label9;
         private NumericUpDown numericCosto;
-        private ComboBox ComboTiposInscripciones;
         private Label label8;
         private DataGridView GridTiposDeInscripciones;
         private FontAwesome.Sharp.IconButton BtnQuitar;
         private FontAwesome.Sharp.IconButton BtnAniadir;
+        private ComboBox ComboTiposInscripciones;
     }
 }

@@ -33,7 +33,15 @@ namespace Desktop.Views
         {
             var inscripcionesView = new InscripcionesView();
             inscripcionesView.MdiParent = this;
-            inscripcionesView.Show();   
+            inscripcionesView.Show();
+
+        }
+
+        private void SubMenuCapacitaciones_Click(object sender, EventArgs e)
+        {
+            var capacitacionesView = new CapacitacionesView();
+            capacitacionesView.MdiParent = this;
+            capacitacionesView.Show();
 
         }
     }

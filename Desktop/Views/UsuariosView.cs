@@ -4,6 +4,7 @@ using Service.Enums;
 using Service.Models;
 using Service.Services;
 using System.Data;
+using System.Linq.Expressions;
 using System.Net.Http.Headers;
 
 namespace Desktop.Views
@@ -50,17 +51,26 @@ namespace Desktop.Views
 
         private async Task GetAllData()
         {
-            if (checkVerEliminados.Checked)
-                _usuario = await _usuarioService.GetAllDeletedAsync();
-            else
-                _usuario = await _usuarioService.GetAllAsync();
+            try{
+                if (checkVerEliminados.Checked)
+                    _usuario = await _usuarioService.GetAllDeletedAsync();
+                else
+                    _usuario = await _usuarioService.GetAllAsync();
 
-            DataGrid.DataSource = _usuario;
-            DataGrid.Columns["Id"].Visible = false; // Ocultar la columna Pais
-            DataGrid.Columns["IsDeleted"].Visible = false; // Ocultar la columna Eliminado
-            DataGrid.Columns["DeleteDate"].Visible = false; // Ocultar la columna Fecha de Eliminación
-            await GetComboTiposDeUsuaio();
+                DataGrid.DataSource = _usuario;
+                DataGrid.Columns["Id"].Visible = false; // Ocultar la columna Pais
+                DataGrid.Columns["IsDeleted"].Visible = false; // Ocultar la columna Eliminado
+                DataGrid.Columns["DeleteDate"].Visible = false; // Ocultar la columna Fecha de Eliminación
+                await GetComboTiposDeUsuaio();
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al obtener los datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+
+           
         }
 
         private async Task GetComboTiposDeUsuaio()

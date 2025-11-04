@@ -21,8 +21,8 @@ namespace Service.Services
             _httpClient = new HttpClient();
            
             _options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
-           _endpoint = Properties.Resources.UrlApi + ApiEndPoins.GetEndpoint(typeof(T).Name);
-            //_endpoint = Properties.Resources.UrlApilocal + ApiEndPoins.GetEndpoint(typeof(T).Name);
+           //_endpoint = Properties.Resources.UrlApi + ApiEndPoins.GetEndpoint(typeof(T).Name);
+            _endpoint = Properties.Resources.UrlApilocal + ApiEndPoins.GetEndpoint(typeof(T).Name);
 
 
         }

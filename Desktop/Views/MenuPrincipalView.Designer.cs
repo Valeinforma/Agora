@@ -68,6 +68,7 @@
             SubMenuCapacitaciones.Name = "SubMenuCapacitaciones";
             SubMenuCapacitaciones.Size = new Size(185, 22);
             SubMenuCapacitaciones.Text = "Capacitaciones";
+            SubMenuCapacitaciones.Click += SubMenuCapacitaciones_Click;
             // 
             // SubMenuTipoInscripciones
             // 

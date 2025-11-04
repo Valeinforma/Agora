@@ -57,7 +57,7 @@ namespace Backend.Controllers
         }
 
        
-
+            
         // GET: api/Capacitaciones/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Capacitacion>> GetCapacitacion(int id)
@@ -82,7 +82,42 @@ namespace Backend.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(capacitacion).State = EntityState.Modified;
+            foreach (var tipoInscripcionCapacitacion in capacitacion.TiposDeInscripciones)
+            {
+                _context.Attach(tipoInscripcionCapacitacion.TipoInscripcion);
+            }
+
+            var capacitacionExistente = await _context.Capacitaciones
+                .AsNoTracking()
+                .Include(c => c.TiposDeInscripciones)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (capacitacionExistente == null)
+            {   
+                return NotFound("No se encontro la capacitacion que se intentaba modificar");
+            }
+
+            var tipodeInscripcionesAEliminar = capacitacionExistente.TiposDeInscripciones
+                .Where(t => !capacitacion.TiposDeInscripciones.Any(ti => ti.Id == t.Id))
+                .ToList();
+
+            foreach (var tipoInscripcionCapacitacion in tipodeInscripcionesAEliminar)
+            {
+                _context.Attach(tipoInscripcionCapacitacion.TipoInscripcion); 
+                _context.TiposInscripcionesCapacitaciones.Remove(tipoInscripcionCapacitacion);
+            }
+            var tipodeInscripcionesAAgregar = capacitacion.TiposDeInscripciones
+                
+                .Where(ti => !capacitacionExistente.TiposDeInscripciones.Any(t => t.Id == ti.Id))
+                .ToList();
+            foreach (var tipoInscripcionCapacitacion in tipodeInscripcionesAAgregar)
+            {
+                _context.TiposInscripcionesCapacitaciones.Add(tipoInscripcionCapacitacion);
+            }
+
+
+
+                _context.Entry(capacitacion).State = EntityState.Modified;
 
             try
             {
@@ -108,6 +143,10 @@ namespace Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Capacitacion>> PostCapacitacion(Capacitacion capacitacion)
         {
+            foreach(var tipoInscripcionCapacitacion in capacitacion.TiposDeInscripciones)
+            {
+                _context.Attach(tipoInscripcionCapacitacion.TipoInscripcion);
+            }
             _context.Capacitaciones.Add(capacitacion);
             await _context.SaveChangesAsync();
 
