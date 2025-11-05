@@ -123,7 +123,7 @@ namespace Backend.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException e)
             {
                 if (!CapacitacionExists(id))
                 {
@@ -131,7 +131,7 @@ namespace Backend.Controllers
                 }
                 else
                 {
-                    throw;
+                    throw new Exception(e.Message);
                 }
             }
 
