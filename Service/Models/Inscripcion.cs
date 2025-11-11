@@ -15,6 +15,7 @@ namespace Service.Models
         public TipoInscripcion? TipoInscripcion { get; set; }
         public int TipoInscripcionId { get; set; }
         public Capacitacion? Capacitacion { get; set; }
+        public DateTime FechaInscripcion { get; set; } = DateTime.Now;
         public int CapacitacionId { get; set; }
         public bool Acreditado { get; set; } = false; // Indica si la inscripción ha sido acreditada
         public decimal Importe { get; set; } = 0;
