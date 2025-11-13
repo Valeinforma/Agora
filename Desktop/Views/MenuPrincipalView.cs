@@ -44,5 +44,13 @@ namespace Desktop.Views
             capacitacionesView.Show();
 
         }
+
+        private void SubMenuAcreditaciones_Click(object sender, EventArgs e)
+        {
+            var acreditacionView = new AcreditacionView();
+            acreditacionView.MdiParent = this;
+            acreditacionView.Show();
+
+        }
     }
 }

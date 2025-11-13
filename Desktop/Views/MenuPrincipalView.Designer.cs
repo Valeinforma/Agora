@@ -34,6 +34,7 @@
             SubMenuCapacitaciones = new ToolStripMenuItem();
             SubMenuTipoInscripciones = new ToolStripMenuItem();
             inscripcionesToolStripMenuItem = new ToolStripMenuItem();
+            SubMenuAcreditaciones = new ToolStripMenuItem();
             SubMenuSalir = new ToolStripMenuItem();
             SubMenuSalirDelSistema = new ToolStripMenuItem();
             toolStrip1 = new ToolStrip();
@@ -51,7 +52,7 @@
             // 
             // SubMenuPrincipal
             // 
-            SubMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] { SubMenuUsuarios, SubMenuCapacitaciones, SubMenuTipoInscripciones, inscripcionesToolStripMenuItem });
+            SubMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] { SubMenuUsuarios, SubMenuCapacitaciones, SubMenuTipoInscripciones, inscripcionesToolStripMenuItem, SubMenuAcreditaciones });
             SubMenuPrincipal.Name = "SubMenuPrincipal";
             SubMenuPrincipal.Size = new Size(65, 20);
             SubMenuPrincipal.Text = "Principal";
@@ -83,6 +84,13 @@
             inscripcionesToolStripMenuItem.Size = new Size(185, 22);
             inscripcionesToolStripMenuItem.Text = "Inscripciones";
             inscripcionesToolStripMenuItem.Click += inscripcionesToolStripMenuItem_Click;
+            // 
+            // SubMenuAcreditaciones
+            // 
+            SubMenuAcreditaciones.Name = "SubMenuAcreditaciones";
+            SubMenuAcreditaciones.Size = new Size(185, 22);
+            SubMenuAcreditaciones.Text = "Acreditaciones";
+            SubMenuAcreditaciones.Click += SubMenuAcreditaciones_Click;
             // 
             // SubMenuSalir
             // 
@@ -135,5 +143,6 @@
         private ToolStripMenuItem SubMenuCapacitaciones;
         private ToolStripMenuItem SubMenuTipoInscripciones;
         private ToolStripMenuItem inscripcionesToolStripMenuItem;
+        private ToolStripMenuItem SubMenuAcreditaciones;
     }
 }
